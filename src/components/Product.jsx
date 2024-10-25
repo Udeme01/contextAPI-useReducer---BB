@@ -2,10 +2,20 @@ import { useContext } from "react";
 import { CartContext } from "./store/shopping-cart-context";
 
 export default function Product({ id, image, title, price, description }) {
-  const { addItemToCart } = useContext(CartContext);
+  // const { id, image, title, price, description } = product;
+  const { addItemToCart, items } = useContext(CartContext);
+
+  const isInCart = items.some((productItem) => productItem.id === id);
+
+  let cartBtn = "Add to bag";
+  const disabled = isInCart;
+
+  if (items.length > 0 && isInCart) {
+    cartBtn = "Added to bag";
+  }
 
   return (
-    <article className="product">
+    <li className="product">
       <img src={image} alt={title} />
       <div className="product-content">
         <div>
@@ -13,10 +23,20 @@ export default function Product({ id, image, title, price, description }) {
           <p className="product-price">${price}</p>
           <p>{description}</p>
         </div>
-        <p className="product-actions">
-          <button onClick={() => addItemToCart(id)}>Add to bag</button>
+        <p className={`product-actions`}>
+          <button
+            onClick={() => addItemToCart(id)}
+            disabled={disabled}
+            className={`${
+              disabled
+                ? "bg-[#f7d9a1] cursor-not-allowed"
+                : "bg-[#f4b115] hover:bg-[#f5b744] cursor-pointer"
+            }`}
+          >
+            {cartBtn}
+          </button>
         </p>
       </div>
-    </article>
+    </li>
   );
 }

@@ -212,18 +212,17 @@ h1 {
 }
 
 .product-actions button {
-  background: #f4b115;
+  /* background: #f4b115; */
   border: none;
   border-radius: 5px;
   padding: 0.5rem 1rem;
   color: #201e1a;
   font-size: 1rem;
-  cursor: pointer;
 }
 
-.product-actions button:hover {
+/* .product-actions button:hover {
   background: #f5b744;
-}
+} */
 
 #modal {
   /* background: #d3b17b; */
