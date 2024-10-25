@@ -1,6 +1,6 @@
 import { createContext, useReducer } from "react";
 import { DUMMY_PRODUCTS } from "../../dummy-products";
-import Product from "../Product";
+// import Product from "../Product";
 
 export const CartContext = createContext({
   items: [],

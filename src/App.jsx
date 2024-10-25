@@ -5,6 +5,9 @@ import Product from "./components/Product.jsx";
 
 import CartContextProvider from "./components/store/shopping-cart-context.jsx";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faInstagram, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+
 function App() {
   return (
     <CartContextProvider>
@@ -14,6 +17,10 @@ function App() {
         <p>
           Carefully crafted to help you be your most Confident and Stylish self.
         </p>
+        <h2>
+          <FontAwesomeIcon icon={faInstagram} />
+          <FontAwesomeIcon icon={faWhatsapp} />
+        </h2>
       </main>
       <Shop>
         {DUMMY_PRODUCTS.map((product) => (

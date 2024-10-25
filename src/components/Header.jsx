@@ -41,7 +41,10 @@ export default function Header() {
   return (
     <>
       <CartModal ref={modal} title="Your Cart" actions={modalActions} />
-      <header id="main-header">
+      <header
+        id="main-header"
+        className="flex items-center justify-between w-full"
+      >
         {showInput ? (
           <span className="searchWrapper">
             <Input type="text" placeholder="Search for a product" />
