@@ -28,7 +28,9 @@ export default function Cart() {
                   <button onClick={() => updateCartItemQuantity(item.id, -1)}>
                     -
                   </button>
-                  <span>{item.quantity}</span>
+                  <span className="flex items-center justify-center font-bold">
+                    {item.quantity}
+                  </span>
                   <button onClick={() => updateCartItemQuantity(item.id, 1)}>
                     +
                   </button>

@@ -10,7 +10,7 @@ function App() {
     <CartContextProvider>
       <Header />
       <main className="hero">
-        <h1>Olu</h1>
+        <h1>Fit-In</h1>
         <p>
           Carefully crafted to help you be your most Confident and Stylish self.
         </p>

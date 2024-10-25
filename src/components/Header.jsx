@@ -44,13 +44,13 @@ export default function Header() {
       <header id="main-header">
         {showInput ? (
           <span className="searchWrapper">
+            <Input type="text" placeholder="Search for a product" />
             <FontAwesomeIcon
               icon={faMagnifyingGlass}
               size="lg"
               color="#f3e7d4F"
               className="searchIcon"
             />
-            <Input type="text" placeholder="Search for a product" />
           </span>
         ) : (
           <>
