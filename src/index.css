@@ -79,7 +79,7 @@ h1 {
   display: flex;
   align-items: center;
 
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   left: 0;
@@ -98,11 +98,13 @@ h1 {
 
 .searchIcon {
   position: absolute;
-  right: 1.5rem;
+  right: 0;
+  top: 0;
   padding: 0.5rem;
   padding-right: 0;
   cursor: pointer;
   background-color: #735932;
+  border: 2px solid red;
 }
 
 .searchInput::placeholder {

@@ -13,12 +13,13 @@ import Input from "./inputs/Input.jsx";
 
 export default function Header() {
   const [showInput, setShowInput] = useState(false);
+  const [search, setSearch] = useState("");
 
   const handleSearchIconClick = () => {
     setShowInput((prevState) => !prevState);
   };
 
-  const { items } = useContext(CartContext);
+  const { items, searchItem } = useContext(CartContext);
   const modal = useRef();
 
   const cartQuantity = items.length; // displays the number of items(quantity) of/that's (in) the cart
@@ -38,6 +39,20 @@ export default function Header() {
     );
   }
 
+  // const handleSearchItem = (item) => {
+  //   console.log("initial search", search);
+  //   console.log("initial item", item);
+  //   setTimeout(() => {
+  //     setSearch(item);
+  //     console.log("2secs item...", item);
+  //     console.log("2secs search...", search);
+  //   }, 3000);
+
+  // };
+  // const handleSearchItem = () => {
+  //   console.log("initial search", search);
+  // };
+
   return (
     <>
       <CartModal ref={modal} title="Your Cart" actions={modalActions} />
@@ -46,14 +61,16 @@ export default function Header() {
         className="flex items-center justify-between w-full"
       >
         {showInput ? (
-          <span className="searchWrapper">
+          <span className="searchWrapper border-2">
             <Input type="text" placeholder="Search for a product" />
-            <FontAwesomeIcon
-              icon={faMagnifyingGlass}
-              size="lg"
-              color="#f3e7d4F"
-              className="searchIcon"
-            />
+            <button className="searchIcon">
+              <FontAwesomeIcon
+                icon={faMagnifyingGlass}
+                size="lg"
+                color="#f3e7d4F"
+                className="borde"
+              />
+            </button>
           </span>
         ) : (
           <>

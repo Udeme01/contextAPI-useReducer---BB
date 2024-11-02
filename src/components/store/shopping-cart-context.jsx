@@ -4,8 +4,10 @@ import { DUMMY_PRODUCTS } from "../../dummy-products";
 
 export const CartContext = createContext({
   items: [],
+  searchResults: [],
   addItemToCart: () => {},
   updateCartItemQuantity: () => {},
+  searchItem: () => {},
 });
 
 // reducer function...
@@ -67,6 +69,16 @@ const shoppingCartReducer = (state, action) => {
     };
   }
 
+  if (action.type === "SEARCH_ITEM") {
+    const searchResults = state.items.filter((item) =>
+      // item.name.toLowerCase().includes(action.payload.toLowerCase())
+      console.log(item)
+    );
+    return {
+      ...state,
+      searchResults,
+    };
+  }
   return state;
 };
 
@@ -75,6 +87,7 @@ export default function CartContextProvider({ children }) {
     shoppingCartReducer,
     {
       items: [],
+      searchResults: [],
     }
   );
 
@@ -95,10 +108,19 @@ export default function CartContextProvider({ children }) {
     });
   }
 
+  function handleSearchItem(productName) {
+    shoppingCartDispatch({
+      type: "SEARCH_ITEM",
+      payload: productName,
+    });
+  }
+
   const ctxValue = {
     items: shoppingCartState.items,
+    searchResults: shoppingCartState.searchResults,
     addItemToCart: handleAddItemToCart,
     updateCartItemQuantity: handleUpdateCartItemQuantity,
+    searchItem: handleSearchItem,
   };
 
   return (
