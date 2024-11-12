@@ -15,7 +15,7 @@ export default function Product({ id, image, title, price, description }) {
   }
 
   return (
-    <li className="product">
+    <li className="product w-[85%] mx-auto sm:w-[85%] borde">
       <img src={image} alt={title} />
       <div className="product-content">
         <div>

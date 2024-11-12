@@ -10,6 +10,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import Input from "./inputs/Input.jsx";
+import Checkout from "./Buttons/Checkout.jsx";
+import Close from "./Buttons/Close.jsx";
 
 export default function Header() {
   const [showInput, setShowInput] = useState(false);
@@ -28,37 +30,22 @@ export default function Header() {
     modal.current.open();
   }
 
-  let modalActions = <button>Close</button>;
+  let modalActions = <Close />;
 
   if (cartQuantity > 0) {
     modalActions = (
       <>
-        <button>Close</button>
-        <button>Checkout</button>
+        <Close />
+        <Checkout />
       </>
     );
   }
-
-  // const handleSearchItem = (item) => {
-  //   console.log("initial search", search);
-  //   console.log("initial item", item);
-  //   setTimeout(() => {
-  //     setSearch(item);
-  //     console.log("2secs item...", item);
-  //     console.log("2secs search...", search);
-  //   }, 3000);
-
-  // };
-  // const handleSearchItem = () => {
-  //   console.log("initial search", search);
-  // };
-
   return (
     <>
       <CartModal ref={modal} title="Your Cart" actions={modalActions} />
       <header
         id="main-header"
-        className="flex items-center justify-between w-full"
+        className="flex items-center justify-between w-[85%] mx-auto xl:max-w-7xl xl:mx-auto"
       >
         {showInput ? (
           <span className="searchWrapper border-2">

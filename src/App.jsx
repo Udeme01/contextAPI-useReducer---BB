@@ -7,6 +7,7 @@ import CartContextProvider from "./components/store/shopping-cart-context.jsx";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import Footer from "./components/Footer.jsx";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         ))}
       </Shop> */}
       <Shop />
+      <Footer />
     </CartContextProvider>
   );
 }

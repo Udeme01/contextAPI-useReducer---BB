@@ -23,7 +23,10 @@ export default function Shop() {
       ) : displayedItems.length === 0 ? (
         <div>No products found</div>
       ) : (
-        <ul id="products" className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+        <ul
+          id="products"
+          className="grid gap-10 sm:gap-x-0 sm:m-9 sm:grid-cols-2 lg:m-12 lg:grid-cols-3 xl:m-0 xl:max-w-7xl xl:mx-auto"
+        >
           {displayedItems.map((product) => (
             <Product key={product.id} {...product} />
           ))}
