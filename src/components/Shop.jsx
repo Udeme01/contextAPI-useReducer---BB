@@ -25,7 +25,7 @@ export default function Shop() {
       ) : (
         <ul
           id="products"
-          className="grid gap-10 sm:gap-x-0 sm:m-9 sm:grid-cols-2 lg:m-12 lg:grid-cols-3 xl:m-0 xl:max-w-7xl xl:mx-auto"
+          className="w-[85%] mx-auto grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:max-w-7xl xl:mx-auto"
         >
           {displayedItems.map((product) => (
             <Product key={product.id} {...product} />
