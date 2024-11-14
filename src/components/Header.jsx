@@ -23,10 +23,13 @@ export default function Header({ query, setQuery }) {
 
   const handleCloseInput = () => {
     setShowInput(false);
+    setQuery("");
+    searchItem("");
   };
 
   const { items, searchItem } = useContext(CartContext);
   const modal = useRef();
+  const inputRef = useRef();
 
   const cartQuantity = items.length; // displays the number of items(quantity) of/that's (in) the cart
 
@@ -36,7 +39,23 @@ export default function Header({ query, setQuery }) {
 
   function handleClearInput() {
     setQuery("");
+    inputRef.current?.focus();
+    searchItem("");
   }
+
+  // Function to handle the search action
+  const handleSearch = () => {
+    if (query.trim() !== "") {
+      searchItem(query);
+    }
+  };
+
+  // Handle Enter key press for search
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  };
 
   let modalActions = <Close />;
 
@@ -58,11 +77,13 @@ export default function Header({ query, setQuery }) {
         {showInput ? (
           <span className="searchWrapper border-2">
             <Input
+              ref={inputRef}
               type="text"
               placeholder="Search for a product"
               autoFocus
               value={query}
               onChange={(e) => setQuery(e.target.value)}
+              onKeyDown={handleKeyDown}
               clearInput={handleClearInput}
             />
 
