@@ -70,14 +70,14 @@ const shoppingCartReducer = (state, action) => {
   }
 
   if (action.type === "SEARCH_ITEM") {
-    const searchResults = state.items.filter((item) =>
-      // item.name.toLowerCase().includes(action.payload.toLowerCase())
-      console.log(item)
+    const searchResults = DUMMY_PRODUCTS.filter((item) =>
+      item.title.toLowerCase().includes(action.payload.toLowerCase())
     );
     return {
       ...state,
       searchResults,
     };
+    // console.log("searching for product...", state.items);
   }
   return state;
 };

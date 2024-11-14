@@ -3,16 +3,21 @@ import Shop from "./components/Shop.jsx";
 // import { DUMMY_PRODUCTS } from "./dummy-products.js";
 // import Product from "./components/Product.jsx";
 
-import CartContextProvider from "./components/store/shopping-cart-context.jsx";
+import CartContextProvider, {
+  CartContext,
+} from "./components/store/shopping-cart-context.jsx";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import Footer from "./components/Footer.jsx";
+import { useContext, useState } from "react";
 
 function App() {
+  const [query, setQuery] = useState("");
+
   return (
     <CartContextProvider>
-      <Header />
+      <Header query={query} setQuery={setQuery} />
       <main className="hero">
         <h1>Fit-In</h1>
         <p>
@@ -30,7 +35,7 @@ function App() {
           </li>
         ))}
       </Shop> */}
-      <Shop />
+      <Shop query={query} />
       <Footer />
     </CartContextProvider>
   );

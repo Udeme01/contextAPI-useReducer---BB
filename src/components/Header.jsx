@@ -13,9 +13,8 @@ import Input from "./inputs/Input.jsx";
 import Checkout from "./Buttons/Checkout.jsx";
 import Close from "./Buttons/Close.jsx";
 
-export default function Header() {
+export default function Header({ query, setQuery }) {
   const [showInput, setShowInput] = useState(false);
-  const [search, setSearch] = useState("");
 
   const handleSearchIconClick = () => {
     setShowInput((prevState) => !prevState);
@@ -49,13 +48,18 @@ export default function Header() {
       >
         {showInput ? (
           <span className="searchWrapper border-2">
-            <Input type="text" placeholder="Search for a product" />
-            <button className="searchIcon">
+            <Input
+              type="text"
+              placeholder="Search for a product"
+              autoFocus
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+            />
+            <button className="searchIcon" onClick={() => searchItem(query)}>
               <FontAwesomeIcon
                 icon={faMagnifyingGlass}
                 size="lg"
                 color="#f3e7d4F"
-                className="borde"
               />
             </button>
           </span>
