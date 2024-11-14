@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useEffect } from "react";
 import { DUMMY_PRODUCTS } from "../../dummy-products";
 // import Product from "../Product";
 
@@ -39,6 +39,8 @@ const shoppingCartReducer = (state, action) => {
       }); // quantity here is explicitly defined when adding a new item. i.e. When adding a new item to the cart, the quantity is explicitly stated as part of the new item's properties. In this case, the quantity is set to 1, indicating that one unit of the product is being added to the cart.
     }
 
+    localStorage.setItem("cartItem", JSON.stringify(updatedItems));
+
     return {
       ...state,
       items: updatedItems,
@@ -62,6 +64,8 @@ const shoppingCartReducer = (state, action) => {
     } else {
       updatedItems[updatedItemIndex] = updatedItem;
     }
+
+    localStorage.setItem("cartItems", JSON.stringify(updatedItems));
 
     return {
       ...state,
@@ -87,6 +91,14 @@ const shoppingCartReducer = (state, action) => {
     };
     // console.log("searching for product...", state.items);
   }
+
+  if (action.type === "SET_ITEMS") {
+    return {
+      ...state,
+      items: action.payload,
+    };
+  }
+
   return state;
 };
 
@@ -98,6 +110,14 @@ export default function CartContextProvider({ children }) {
       searchResults: [],
     }
   );
+
+  // Load cart items from local storage on initial render
+  useEffect(() => {
+    const savedCartItems = JSON.parse(localStorage.getItem("cartItems"));
+    if (savedCartItems) {
+      shoppingCartDispatch({ type: "SET_ITEMS", payload: savedCartItems });
+    }
+  }, []);
 
   function handleAddItemToCart(id) {
     shoppingCartDispatch({
