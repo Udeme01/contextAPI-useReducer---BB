@@ -15,12 +15,12 @@ export default function Shop({ query }) {
     setIsFetching(false);
   }, []);
 
-  const filteredItems = fitinItems.filter((item) =>
-    item.title.toLowerCase().includes(query.toLowerCase())
-  );
-  console.log(filteredItems);
+  // const filteredItems = fitinItems.filter((item) =>
+  //   item.title.toLowerCase().includes(query.toLowerCase())
+  // );
+  // console.log(filteredItems);
 
-  // const filteredItems = searchResults.length > 0 ? searchResults : fitinItems;
+  const filteredItems = searchResults.length > 0 ? searchResults : fitinItems;
   // console.log(filteredItems[0].title);
 
   return (

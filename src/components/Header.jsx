@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBagShopping,
   faMagnifyingGlass,
+  faRemove,
 } from "@fortawesome/free-solid-svg-icons";
 
 import Input from "./inputs/Input.jsx";
@@ -16,8 +17,12 @@ import Close from "./Buttons/Close.jsx";
 export default function Header({ query, setQuery }) {
   const [showInput, setShowInput] = useState(false);
 
-  const handleSearchIconClick = () => {
+  const handleShowInput = () => {
     setShowInput((prevState) => !prevState);
+  };
+
+  const handleCloseInput = () => {
+    setShowInput(false);
   };
 
   const { items, searchItem } = useContext(CartContext);
@@ -27,6 +32,10 @@ export default function Header({ query, setQuery }) {
 
   function handleOpenCartClick() {
     modal.current.open();
+  }
+
+  function handleClearInput() {
+    setQuery("");
   }
 
   let modalActions = <Close />;
@@ -54,13 +63,22 @@ export default function Header({ query, setQuery }) {
               autoFocus
               value={query}
               onChange={(e) => setQuery(e.target.value)}
+              clearInput={handleClearInput}
             />
-            <button className="searchIcon" onClick={() => searchItem(query)}>
+
+            <button className="searchIcon">
               <FontAwesomeIcon
+                onClick={() => searchItem(query)}
                 icon={faMagnifyingGlass}
                 size="lg"
                 color="#f3e7d4F"
               />
+              <p
+                onClick={handleCloseInput}
+                className="absolute -right-1 -bottom-[60px] left-0 text-[#735932] bg-[#f3e7d4] top-[60px] text-center leading-loose h-fit rounded-xs font-medium"
+              >
+                close
+              </p>
             </button>
           </span>
         ) : (
@@ -70,7 +88,7 @@ export default function Header({ query, setQuery }) {
               {/* <h1>Olu</h1> */}
             </div>
             <p>
-              <button onClick={handleSearchIconClick}>
+              <button onClick={handleShowInput}>
                 <FontAwesomeIcon icon={faMagnifyingGlass} size="lg" />
               </button>
             </p>
