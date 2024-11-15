@@ -39,7 +39,8 @@ const shoppingCartReducer = (state, action) => {
       }); // quantity here is explicitly defined when adding a new item. i.e. When adding a new item to the cart, the quantity is explicitly stated as part of the new item's properties. In this case, the quantity is set to 1, indicating that one unit of the product is being added to the cart.
     }
 
-    localStorage.setItem("cartItem", JSON.stringify(updatedItems));
+    // ADD_TO_CART_STORAGE
+    localStorage.setItem("cartItems", JSON.stringify(updatedItems));
 
     return {
       ...state,
@@ -65,6 +66,7 @@ const shoppingCartReducer = (state, action) => {
       updatedItems[updatedItemIndex] = updatedItem;
     }
 
+    // UPDATE_CART_STORAGE
     localStorage.setItem("cartItems", JSON.stringify(updatedItems));
 
     return {
@@ -111,7 +113,7 @@ export default function CartContextProvider({ children }) {
     }
   );
 
-  // Load cart items from local storage on initial render
+  // LOAD CART ITEMS FROM LOCAL STORAGE ON INITIAL RENDER
   useEffect(() => {
     const savedCartItems = JSON.parse(localStorage.getItem("cartItems"));
     if (savedCartItems) {
