@@ -3,7 +3,7 @@ import Product from "./Product";
 import { DUMMY_PRODUCTS } from "../dummy-products";
 import { CartContext } from "./store/shopping-cart-context";
 
-export default function Shop({ query }) {
+export default function Shop() {
   const [fitinItems, setFitinItems] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
   const { searchResults } = useContext(CartContext);
