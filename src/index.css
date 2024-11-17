@@ -210,10 +210,15 @@ h1 {
 }
 
 .product-actions {
-  text-align: right;
+  /* text-align: right; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0.25rem 0;
 }
 
-.product-actions button {
+.product-actions button,
+.product-actions .link {
   /* background: #f4b115; */
   border: none;
   border-radius: 5px;

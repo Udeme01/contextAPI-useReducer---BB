@@ -1,20 +1,20 @@
 import { useRef, useContext, useState } from "react";
-
 import CartModal from "./CartModal.jsx";
 import { CartContext } from "./store/shopping-cart-context.jsx";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBagShopping,
   faMagnifyingGlass,
-  faRemove,
 } from "@fortawesome/free-solid-svg-icons";
-
+import { faInstagram, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import Input from "./inputs/Input.jsx";
 import Checkout from "./Buttons/Checkout.jsx";
 import Close from "./Buttons/Close.jsx";
+import { Link } from "react-router-dom";
+import logo from "/logo.png";
 
-export default function Header({ query, setQuery }) {
+export default function Header() {
+  const [query, setQuery] = useState("");
   const [showInput, setShowInput] = useState(false);
 
   const handleShowInput = () => {
@@ -104,10 +104,10 @@ export default function Header({ query, setQuery }) {
           </span>
         ) : (
           <>
-            <div id="main-title">
-              <img src="logo.png" alt="Elegant model" />
-              {/* <h1>Olu</h1> */}
-            </div>
+            <Link to={`/`} id="main-title">
+              <img src={logo} alt="Elegant model" />
+              <h1 className="hidden md:block">fit-in</h1>
+            </Link>
             <p>
               <button onClick={handleShowInput}>
                 <FontAwesomeIcon icon={faMagnifyingGlass} size="lg" />
@@ -122,6 +122,16 @@ export default function Header({ query, setQuery }) {
           </>
         )}
       </header>
+      <main className="hero">
+        <h1 className="md:hidden">Fit-In</h1>
+        <p className="px-4">
+          Carefully crafted to help you be your most Confident and Stylish self.
+        </p>
+        <h2>
+          <FontAwesomeIcon icon={faInstagram} />
+          <FontAwesomeIcon icon={faWhatsapp} />
+        </h2>
+      </main>
     </>
   );
 }

@@ -1,19 +1,20 @@
-import { useState } from "react";
 import CartContextProvider from "./components/store/shopping-cart-context.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout from "./pages/RootLayout.jsx";
 import Homepage from "./pages/Homepage.jsx";
 import Errorpage from "./pages/Errorpage.jsx";
+import ProductDetails from "./pages/ProductDetails.jsx";
 
 function App() {
-  const [query, setQuery] = useState("");
-
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <RootLayout query={query} setQuery={setQuery} />,
+      element: <RootLayout />,
       errorElement: <Errorpage />,
-      children: [{ index: true, element: <Homepage /> }],
+      children: [
+        { index: true, element: <Homepage /> },
+        { path: "product/:productId", element: <ProductDetails /> },
+      ],
     },
     {
       future: {

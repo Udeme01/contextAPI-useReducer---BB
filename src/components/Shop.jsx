@@ -7,7 +7,7 @@ export default function Shop() {
   const [fitinItems, setFitinItems] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
   const { searchResults } = useContext(CartContext);
-  console.log(searchResults);
+  // console.log(searchResults);
 
   useEffect(() => {
     setIsFetching(true);

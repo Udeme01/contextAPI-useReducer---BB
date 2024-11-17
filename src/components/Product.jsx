@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { CartContext } from "./store/shopping-cart-context";
+import { Link } from "react-router-dom";
 
 export default function Product({ id, image, title, price, description }) {
   // const { id, image, title, price, description } = product;
@@ -24,6 +25,12 @@ export default function Product({ id, image, title, price, description }) {
           <p>{description}</p>
         </div>
         <p className={`product-actions`}>
+          <Link
+            to={`product/${id}`}
+            className={`link bg-[#f4b115] hover:bg-[#f5b744] cursor-pointer`}
+          >
+            View Product
+          </Link>
           <button
             onClick={() => addItemToCart(id)}
             disabled={disabled}
