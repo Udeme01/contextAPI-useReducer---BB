@@ -1,9 +1,11 @@
 import { createContext, useReducer, useEffect } from "react";
 import { DUMMY_PRODUCTS } from "../../dummy-products";
 // import Product from "../Product";
+import { fetchAllEntries } from "../contentful/https";
 
 export const CartContext = createContext({
   items: [],
+  products: [],
   searchResults: [],
   addItemToCart: () => {},
   updateCartItemQuantity: () => {},
@@ -12,6 +14,13 @@ export const CartContext = createContext({
 
 // reducer function...
 const shoppingCartReducer = (state, action) => {
+  if (action.type === "SET_PRODUCTS") {
+    return {
+      ...state,
+      products: action.payload,
+    };
+  }
+
   if (action.type === "ADD_ITEM") {
     const updatedItems = [...state.items]; // COPY THE PREVIOUS ITEMS FROM THE CART. i.e, CREATES A COPY OF THE CURRENT STATE'S ITEM ARRAY.
 
@@ -27,7 +36,7 @@ const shoppingCartReducer = (state, action) => {
       }; // the quantity property is defined at the moment it's being used.
       updatedItems[existingCartItemIndex] = updatedItem;
     } else {
-      const product = DUMMY_PRODUCTS.find(
+      const product = state.products.find(
         (product) => product.id === action.payload
       );
 
@@ -79,11 +88,11 @@ const shoppingCartReducer = (state, action) => {
     if (action.payload.trim() === "") {
       return {
         ...state,
-        searchResults: DUMMY_PRODUCTS,
+        searchResults: state.products,
       };
     }
 
-    const searchResults = DUMMY_PRODUCTS.filter((item) =>
+    const searchResults = state.products.filter((item) =>
       item.title.toLowerCase().includes(action.payload.toLowerCase())
     );
 
@@ -109,12 +118,29 @@ export default function CartContextProvider({ children }) {
     shoppingCartReducer,
     {
       items: [],
+      products: [],
       searchResults: [],
     }
   );
 
-  // LOAD CART ITEMS FROM LOCAL STORAGE ON INITIAL RENDER
+  // FETCH PRODUCTS FROM CONTENTFUL && LOAD CART ITEMS FROM LOCAL STORAGE ON INITIAL RENDER
   useEffect(() => {
+    const fetchProducts = async () => {
+      const entries = await fetchAllEntries();
+      const products = entries.map((entry) => {
+        return {
+          id: entry.sys.id,
+          title: entry.fields.fitinTitle,
+          description: entry.fields.fitinDescription,
+          price: entry.fields.fitinPrice,
+          image: entry.fields.fitinImage?.fields.file.url,
+        };
+      });
+      shoppingCartDispatch({ type: "SET_PRODUCTS", payload: products });
+    };
+
+    fetchProducts();
+
     const savedCartItems = JSON.parse(localStorage.getItem("cartItems"));
     if (savedCartItems) {
       shoppingCartDispatch({ type: "SET_ITEMS", payload: savedCartItems });
@@ -147,6 +173,7 @@ export default function CartContextProvider({ children }) {
 
   const ctxValue = {
     items: shoppingCartState.items,
+    products: shoppingCartState.products,
     searchResults: shoppingCartState.searchResults,
     addItemToCart: handleAddItemToCart,
     updateCartItemQuantity: handleUpdateCartItemQuantity,

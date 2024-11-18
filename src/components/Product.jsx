@@ -2,11 +2,10 @@ import { useContext } from "react";
 import { CartContext } from "./store/shopping-cart-context";
 import { Link } from "react-router-dom";
 
-export default function Product({ id, image, title, price, description }) {
-  // const { id, image, title, price, description } = product;
+export default function Product({ fields, sys }) {
   const { addItemToCart, items } = useContext(CartContext);
 
-  const isInCart = items.some((productItem) => productItem.id === id);
+  const isInCart = items.some((productItem) => productItem.id === sys.id);
 
   let cartBtn = "Add to bag";
   const disabled = isInCart;
@@ -17,22 +16,25 @@ export default function Product({ id, image, title, price, description }) {
 
   return (
     <li className="product">
-      <img src={image} alt={title} />
+      <img
+        src={fields.fitinImage.fields.file.url}
+        alt={fields.fitinImage.fields.file.title}
+      />
       <div className="product-content">
         <div>
-          <h3>{title}</h3>
-          <p className="product-price">${price}</p>
-          <p>{description}</p>
+          <h3>{fields.fitinTitle}</h3>
+          <p className="product-price">${fields.fitinPrice}</p>
+          <p>{fields.fitinDescription}</p>
         </div>
         <p className={`product-actions`}>
           <Link
-            to={`product/${id}`}
+            to={`${sys.id}`}
             className={`link bg-[#f4b115] hover:bg-[#f5b744] cursor-pointer`}
           >
             View Product
           </Link>
           <button
-            onClick={() => addItemToCart(id)}
+            onClick={() => addItemToCart(sys.id)}
             disabled={disabled}
             className={`${
               disabled
@@ -47,3 +49,9 @@ export default function Product({ id, image, title, price, description }) {
     </li>
   );
 }
+
+// id,
+//   image,
+//   title,
+//   price,
+//   description,
