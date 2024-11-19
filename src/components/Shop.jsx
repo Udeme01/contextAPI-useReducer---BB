@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import Product from "./Product";
-import { DUMMY_PRODUCTS } from "../dummy-products";
 import { CartContext } from "./store/shopping-cart-context";
 import { fetchAllEntries } from "./contentful/https";
 

@@ -8,9 +8,7 @@ export default function Cart() {
     (acc, item) => acc + item.price * item.quantity,
     0
   );
-  console.log(totalPrice);
   const formattedTotalPrice = `$${totalPrice.toFixed(2)}`;
-  console.log(formattedTotalPrice);
 
   return (
     <div id="cart">
@@ -19,7 +17,6 @@ export default function Cart() {
         <ul id="cart-items">
           {items.map((item) => {
             const formattedPrice = `$${item.price.toFixed(2)}`;
-            console.log(formattedPrice);
 
             return (
               <li key={item.id}>
