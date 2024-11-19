@@ -32,25 +32,25 @@ const ProductDetails = () => {
 
         {/* size */}
         <h2 className="capitalize tracking-widest mt-4">Size: XS (4 - 6)</h2>
-        <div className="border flex-wrap">
-          <span className="border p-2 rounded-md bg-[#000] text-[#edbf68] font-medium">
+        <div className="border">
+          <button className="border p-2 rounded-md bg-[#000] text-[#edbf68] font-medium">
             XS (4 - 6)
-          </span>
-          <span className="border p-2 rounded-md bg-[#000] text-[#edbf68] font-medium">
+          </button>
+          <button className="border p-2 rounded-md bg-[#000] text-[#edbf68] font-medium">
             S (8 - 10)
-          </span>
-          <span className="border p-2 rounded-md bg-[#000] text-[#edbf68] font-medium">
+          </button>
+          <button className="border p-2 rounded-md bg-[#000] text-[#edbf68] font-medium">
             M (12 - 14)
-          </span>
-          <span className="border p-2 rounded-md bg-[#000] text-[#edbf68] font-medium">
+          </button>
+          <button className="border p-2 rounded-md bg-[#000] text-[#edbf68] font-medium">
             L (16 - 18)
-          </span>
-          <span className="border p-2 rounded-md bg-[#000] text-[#edbf68] font-medium">
+          </button>
+          <button className="border p-2 rounded-md bg-[#000] text-[#edbf68] font-medium">
             XL (20 - 22)
-          </span>
-          <span className="border p-2 rounded-md bg-[#000] text-[#edbf68] font-medium">
+          </button>
+          <button className="border p-2 rounded-md bg-[#000] text-[#edbf68] font-medium">
             2X (24 - 26)
-          </span>
+          </button>
         </div>
       </div>
     </section>
