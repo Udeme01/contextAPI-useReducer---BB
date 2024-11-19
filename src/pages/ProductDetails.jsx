@@ -2,8 +2,12 @@ import React from "react";
 // import { Link, useParams } from "react-router-dom";
 import productImage from "../assets/dream-gown.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons/faChevronLeft";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import {
+  faChevronLeft,
+  faChevronRight,
+  faMinus,
+  faPlus,
+} from "@fortawesome/free-solid-svg-icons";
 
 const ProductDetails = () => {
   // const params = useParams();
@@ -31,27 +35,60 @@ const ProductDetails = () => {
         </span>
 
         {/* size */}
-        <h2 className="capitalize tracking-widest mt-4">Size: XS (4 - 6)</h2>
-        <div className="border">
-          <button className="border p-2 rounded-md bg-[#000] text-[#edbf68] font-medium">
-            XS (4 - 6)
+        <section>
+          <h2 className="capitalize tracking-widest mt-4">Size: XS (4 - 6)</h2>
+          <div>
+            {/* onClick of btn, bg-color becomes the hovered color while txt-color becomes black-bg */}
+            <button className="border border-[#f7d9a1] p-2 m-1 ml-0 rounded-md bg-[#000] text-[#edbf68] font-medium hover:border-[#be8c2d]">
+              XS (4 - 6)
+            </button>
+            <button className="border border-[#f7d9a1] p-2 m-1 ml-0 rounded-md bg-[#000] text-[#edbf68] font-medium hover:border-[#be8c2d]">
+              S (8 - 10)
+            </button>
+            <button className="border border-[#f7d9a1] p-2 m-1 ml-0 rounded-md bg-[#000] text-[#edbf68] font-medium hover:border-[#be8c2d]">
+              M (12 - 14)
+            </button>
+            <button className="border border-[#f7d9a1] p-2 m-1 ml-0 rounded-md bg-[#000] text-[#edbf68] font-medium hover:border-[#be8c2d]">
+              L (16 - 18)
+            </button>
+            <button className="border border-[#f7d9a1] p-2 m-1 ml-0 rounded-md bg-[#000] text-[#edbf68] font-medium hover:border-[#be8c2d]">
+              XL (20 - 22)
+            </button>
+            <button className="border border-[#f7d9a1] p-2 m-1 ml-0 rounded-md bg-[#000] text-[#edbf68] font-medium hover:border-[#be8c2d]">
+              2X (24)
+            </button>
+          </div>
+        </section>
+
+        {/* Quantity */}
+        <section>
+          <h2 className="capitalize tracking-widest mt-4">Quantity</h2>
+          <div className="border flex items-center justify-around w-40 relative">
+            <button className="absolute left-0 right-28">
+              <FontAwesomeIcon icon={faMinus} />
+            </button>
+            <span>1</span>
+            <button className="absolute right-0 left-28">
+              <FontAwesomeIcon icon={faPlus} />
+            </button>
+          </div>
+        </section>
+
+        {/* add to cart */}
+        <section className="border mt-10">
+          <button
+            onClick={() => addItemToCart(sys.id)}
+            // disabled={disabled}
+            // className={`${
+            //   disabled
+            //     ? "bg-[#f7d9a1] cursor-not-allowed"
+            //     : "bg-[#f4b115] hover:bg-[#f5b744] cursor-pointer"
+            // }`}
+            className="text-[#edbf68] border border-[#f7d9a1] tracking-widest cursor-pointer w-full"
+          >
+            Add to cart
           </button>
-          <button className="border p-2 rounded-md bg-[#000] text-[#edbf68] font-medium">
-            S (8 - 10)
-          </button>
-          <button className="border p-2 rounded-md bg-[#000] text-[#edbf68] font-medium">
-            M (12 - 14)
-          </button>
-          <button className="border p-2 rounded-md bg-[#000] text-[#edbf68] font-medium">
-            L (16 - 18)
-          </button>
-          <button className="border p-2 rounded-md bg-[#000] text-[#edbf68] font-medium">
-            XL (20 - 22)
-          </button>
-          <button className="border p-2 rounded-md bg-[#000] text-[#edbf68] font-medium">
-            2X (24 - 26)
-          </button>
-        </div>
+        </section>
       </div>
     </section>
   );
