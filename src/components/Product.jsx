@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 
 export default function Product({ fields, sys }) {
   const { addItemToCart, items } = useContext(CartContext);
+  // console.log("fields", fields);
+  // console.log("sys", sys);
 
   const isInCart = items.some((productItem) => productItem.id === sys.id);
 
@@ -49,9 +51,3 @@ export default function Product({ fields, sys }) {
     </li>
   );
 }
-
-// id,
-//   image,
-//   title,
-//   price,
-//   description,

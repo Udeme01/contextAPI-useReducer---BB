@@ -14,12 +14,16 @@ const ProductDetails = () => {
 
   return (
     <section className="w-[85%] mx-auto text-center borde rounded-lg h-full">
-      <div>
-        <img src={productImage} alt="dream-gown" className="rounded-lg" />
-        <div className="flex items-center justify-center gap-8 my-6">
-          <FontAwesomeIcon icon={faChevronLeft} />
+      <div className="mx-auto">
+        <img src={productImage} alt="dream-gown" className="rounded-lg w-full mx-auto" />
+        <div className="flex items-center justify-center gap-6 my-6">
+          <button className="py-2 px-4">
+            <FontAwesomeIcon icon={faChevronLeft} />
+          </button>
           <span>1/3</span>
-          <FontAwesomeIcon icon={faChevronRight} />
+          <button className="py-2 px-4">
+            <FontAwesomeIcon icon={faChevronRight} />
+          </button>
         </div>
       </div>
       <div className="text-left leading-10">

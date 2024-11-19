@@ -48,6 +48,7 @@ export default function Header() {
     if (query.trim() !== "") {
       searchItem(query);
     }
+    console.log(query);
   };
 
   // Handle Enter key press for search
@@ -75,7 +76,7 @@ export default function Header() {
         className="flex items-center justify-between w-[85%] mx-auto xl:max-w-7xl xl:mx-auto"
       >
         {showInput ? (
-          <span className="searchWrapper border-2">
+          <span className="searchWrapper">
             <Input
               ref={inputRef}
               type="text"
@@ -89,7 +90,7 @@ export default function Header() {
 
             <button className="searchIcon">
               <FontAwesomeIcon
-                onClick={() => searchItem(query)}
+                onClick={handleSearch}
                 icon={faMagnifyingGlass}
                 size="lg"
                 color="#f3e7d4F"
