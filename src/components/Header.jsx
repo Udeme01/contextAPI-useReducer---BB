@@ -48,7 +48,7 @@ export default function Header() {
     if (query.trim() !== "") {
       searchItem(query);
     }
-    console.log(query);
+    // console.log(query);
   };
 
   // Handle Enter key press for search

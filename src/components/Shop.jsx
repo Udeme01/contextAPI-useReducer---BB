@@ -7,7 +7,6 @@ export default function Shop() {
   const [fitinItems, setFitinItems] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
   const { searchResults } = useContext(CartContext);
-  console.log(searchResults);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,7 +25,6 @@ export default function Shop() {
   }, []);
 
   const filteredItems = searchResults.length > 0 ? searchResults : fitinItems;
-  console.log(filteredItems);
 
   return (
     <section id="shop">
@@ -40,8 +38,7 @@ export default function Shop() {
           className="w-[85%] mx-auto grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:max-w-7xl xl:mx-auto"
         >
           {filteredItems.map((product) => {
-            console.log(product);
-            return <Product key={product.sys.id} {...product} />;
+            return <Product key={product.id} {...product} />;
           })}
         </ul>
       )}
@@ -52,3 +49,9 @@ export default function Shop() {
 // const filteredItems = fitinItems.filter((item) =>
 //   item.title.toLowerCase().includes(query.toLowerCase())
 // );
+
+// description
+// id
+// image
+// price
+// title

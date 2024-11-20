@@ -128,12 +128,13 @@ export default function CartContextProvider({ children }) {
     const fetchProducts = async () => {
       const entries = await fetchAllEntries();
       const products = entries.map((entry) => {
+        const { id, title, description, price, image } = entry;
         return {
-          id: entry.sys.id,
-          title: entry.fields.fitinTitle,
-          description: entry.fields.fitinDescription,
-          price: entry.fields.fitinPrice,
-          image: entry.fields.fitinImage?.fields.file.url,
+          id,
+          title,
+          description,
+          price,
+          image,
         };
       });
       shoppingCartDispatch({ type: "SET_PRODUCTS", payload: products });
