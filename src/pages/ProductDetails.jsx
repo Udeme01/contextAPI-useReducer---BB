@@ -15,7 +15,11 @@ const ProductDetails = () => {
   return (
     <section className="w-[85%] mx-auto text-center borde rounded-lg h-full">
       <div className="mx-auto">
-        <img src={productImage} alt="dream-gown" className="rounded-lg w-full mx-auto" />
+        <img
+          src={productImage}
+          alt="dream-gown"
+          className="rounded-lg w-full mx-auto"
+        />
         <div className="flex items-center justify-center gap-6 my-6">
           <button className="py-2 px-4">
             <FontAwesomeIcon icon={faChevronLeft} />
@@ -38,27 +42,36 @@ const ProductDetails = () => {
           </span>
         </span>
 
+        {/* colors */}
+        <section>
+          <h2 className="capitalize tracking-widest mt-4">Color: black</h2>
+          <div>
+            {/* onClick of btn, bg-color becomes the hovered color while txt-color becomes black-bg */}
+            <button className="border border-[#f7d9a1] p-4 rounded-full bg-[#000] hover:border-[#be8c2d]"></button>
+          </div>
+        </section>
+
         {/* size */}
         <section>
           <h2 className="capitalize tracking-widest mt-4">Size: XS (4 - 6)</h2>
           <div>
             {/* onClick of btn, bg-color becomes the hovered color while txt-color becomes black-bg */}
-            <button className="border border-[#f7d9a1] p-2 m-1 ml-0 rounded-md bg-[#000] text-[#edbf68] font-medium hover:border-[#be8c2d]">
-              XS (4 - 6)
+            <button className="border border-[#f7d9a1] p-2 m-1 ml-0 rounded-md bg-[#000] text-[#edbf68] text-sm font-medium hover:border-[#be8c2d]">
+              sm (4 - 6)
             </button>
-            <button className="border border-[#f7d9a1] p-2 m-1 ml-0 rounded-md bg-[#000] text-[#edbf68] font-medium hover:border-[#be8c2d]">
+            <button className="border border-[#f7d9a1] p-2 m-1 ml-0 rounded-md bg-[#000] text-[#edbf68] text-sm font-medium hover:border-[#be8c2d]">
               S (8 - 10)
             </button>
-            <button className="border border-[#f7d9a1] p-2 m-1 ml-0 rounded-md bg-[#000] text-[#edbf68] font-medium hover:border-[#be8c2d]">
+            <button className="border border-[#f7d9a1] p-2 m-1 ml-0 rounded-md bg-[#000] text-[#edbf68] text-sm font-medium hover:border-[#be8c2d]">
               M (12 - 14)
             </button>
-            <button className="border border-[#f7d9a1] p-2 m-1 ml-0 rounded-md bg-[#000] text-[#edbf68] font-medium hover:border-[#be8c2d]">
+            <button className="border border-[#f7d9a1] p-2 m-1 ml-0 rounded-md bg-[#000] text-[#edbf68] text-sm font-medium hover:border-[#be8c2d]">
               L (16 - 18)
             </button>
-            <button className="border border-[#f7d9a1] p-2 m-1 ml-0 rounded-md bg-[#000] text-[#edbf68] font-medium hover:border-[#be8c2d]">
+            <button className="border border-[#f7d9a1] p-2 m-1 ml-0 rounded-md bg-[#000] text-[#edbf68] text-sm font-medium hover:border-[#be8c2d]">
               XL (20 - 22)
             </button>
-            <button className="border border-[#f7d9a1] p-2 m-1 ml-0 rounded-md bg-[#000] text-[#edbf68] font-medium hover:border-[#be8c2d]">
+            <button className="border border-[#f7d9a1] p-2 m-1 ml-0 rounded-md bg-[#000] text-[#edbf68] text-sm font-medium hover:border-[#be8c2d]">
               2X (24)
             </button>
           </div>
@@ -93,6 +106,8 @@ const ProductDetails = () => {
             Add to cart
           </button>
         </section>
+
+        {/* size guide chart */}
       </div>
     </section>
   );

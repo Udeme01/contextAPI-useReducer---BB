@@ -1,6 +1,4 @@
 import { createContext, useReducer, useEffect } from "react";
-import { DUMMY_PRODUCTS } from "../../dummy-products";
-// import Product from "../Product";
 import { fetchAllEntries } from "../contentful/https";
 
 export const CartContext = createContext({
