@@ -6,7 +6,6 @@ import ProductDetails, {
   loader as productDetailLoader,
 } from "./pages/ProductDetails.jsx";
 import Shop, { loader as productsLoader } from "./components/Shop.jsx";
-import ScrollToTop from "./components/ScrollToTop.jsx";
 
 function App() {
   const router = createBrowserRouter([
@@ -46,9 +45,7 @@ function App() {
         future={{
           v7_startTransition: true,
         }}
-      >
-        <ScrollToTop />
-      </RouterProvider>
+      />
     </CartContextProvider>
   );
 }
