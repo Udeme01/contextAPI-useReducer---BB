@@ -7,6 +7,7 @@ import {
   faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import { CartContext } from "./store/shopping-cart-context";
+import sizeGuideImg from "../assets/sizeGuide.jpg";
 
 const ProductItem = ({ product }) => {
   const { id, description, image, title, price } = product;
@@ -108,6 +109,10 @@ const ProductItem = ({ product }) => {
         <p className="leading-normal mt-6">{description}</p>
 
         {/* size guide chart */}
+        <img
+          src={sizeGuideImg}
+          className="mt-8 rounded-sm"
+        />
       </div>
     </section>
   );

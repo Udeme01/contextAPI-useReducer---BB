@@ -3,16 +3,16 @@ import { CartContext } from "./store/shopping-cart-context";
 import { Link } from "react-router-dom";
 
 export default function Product({ description, id, image, price, title }) {
-  const { addItemToCart, items } = useContext(CartContext);
+  const { items } = useContext(CartContext);
 
   const isInCart = items.some((productItem) => productItem.id === id);
 
-  let cartBtn = "Add to bag";
-  const disabled = isInCart;
+  // let cartBtn = "Add to bag";
+  // const disabled = isInCart;
 
-  if (items.length > 0 && isInCart) {
-    cartBtn = "Added to bag";
-  }
+  // if (items.length > 0 && isInCart) {
+  //   cartBtn = "Added to bag";
+  // }
 
   return (
     <li className="product">
@@ -26,11 +26,11 @@ export default function Product({ description, id, image, price, title }) {
         <p className={`product-actions`}>
           <Link
             to={`${id}`}
-            className={`link bg-[#f4b115] hover:bg-[#f5b744] cursor-pointer`}
+            className={`link bg-[#f4b115] hover:bg-[#f5b744] cursor-pointer w-full text-center mt-4`}
           >
             View Product
           </Link>
-          <button
+          {/* <button
             onClick={() => addItemToCart(id)}
             disabled={disabled}
             className={`${
@@ -40,7 +40,7 @@ export default function Product({ description, id, image, price, title }) {
             }`}
           >
             {cartBtn}
-          </button>
+          </button> */}
         </p>
       </div>
     </li>

@@ -6,6 +6,7 @@ import ProductDetails, {
   loader as productDetailLoader,
 } from "./pages/ProductDetails.jsx";
 import Shop, { loader as productsLoader } from "./components/Shop.jsx";
+import ProductRoot from "./pages/ProductRoot.jsx";
 
 function App() {
   const router = createBrowserRouter([
