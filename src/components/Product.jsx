@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 
 export default function Product({ description, id, image, price, title }) {
   const { addItemToCart, items } = useContext(CartContext);
-  // console.log("fields", fields);
-  // console.log("sys", sys);
 
   const isInCart = items.some((productItem) => productItem.id === id);
 
@@ -18,10 +16,7 @@ export default function Product({ description, id, image, price, title }) {
 
   return (
     <li className="product">
-      <img
-        src={image}
-        // alt={fields.fitinImage.fields.file.title}
-      />
+      <img src={image} alt={title} />
       <div className="product-content">
         <div>
           <h3>{title}</h3>

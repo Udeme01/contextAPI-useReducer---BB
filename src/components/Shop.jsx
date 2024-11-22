@@ -2,17 +2,20 @@ import React, { useContext, useEffect, useState } from "react";
 import Product from "./Product";
 import { CartContext } from "./store/shopping-cart-context";
 import { fetchAllEntries } from "./contentful/https";
+import { useLoaderData } from "react-router-dom";
 
 export default function Shop() {
   const [fitinItems, setFitinItems] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
   const { searchResults } = useContext(CartContext);
 
+  const entries = useLoaderData();
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         setIsFetching(true);
-        const entries = await fetchAllEntries();
+        // const entries = await fetchAllEntries();
         setFitinItems(entries || []);
         setIsFetching(false);
       } catch (error) {
@@ -45,6 +48,21 @@ export default function Shop() {
     </section>
   );
 }
+
+export const loader = async () => {
+  const entries = await fetchAllEntries();
+  // console.log(entries);
+
+  if (!entries) {
+    throw new Response(
+      JSON.stringify({ message: "Failed to fetch product items" }),
+      { status: 500 }
+    );
+    // throw json({ message: "Failed to fetch product items" }, { status: 500 });
+  } else {
+    return entries;
+  }
+};
 
 // const filteredItems = fitinItems.filter((item) =>
 //   item.title.toLowerCase().includes(query.toLowerCase())
