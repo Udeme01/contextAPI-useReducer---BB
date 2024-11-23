@@ -9,13 +9,60 @@ import {
 import { CartContext } from "./store/shopping-cart-context";
 import sizeGuideImg from "../assets/sizeGuide.jpg";
 
+// SWIPER JS
+import { Swiper, SwiperSlide } from "swiper/react";
+import {  FreeMode } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/free-mode";
+
 const ProductItem = ({ product }) => {
   const { id, description, image, title, price } = product;
   const { addItemToCart } = useContext(CartContext);
   return (
     <section className="w-[85%] mx-auto text-center borde rounded-lg h-full">
       <div className="mx-auto">
-        <img src={image} alt={title} className="rounded-lg w-full mx-auto" />
+        <Swiper
+          modules={[FreeMode]}
+          free-mode={{ enabled: true }}
+          spaceBetween={50}
+          slidesPerView={1}
+          onSlideChange={() => console.log("slide change")}
+          onSwiper={(swiper) => console.log(swiper)}
+        >
+          <SwiperSlide>
+            swiper 1
+            <img
+              src={image}
+              alt={title}
+              className="rounded-lg w-full mx-auto"
+            />
+          </SwiperSlide>
+          <SwiperSlide>
+            swiper 2{" "}
+            <img
+              src={image}
+              alt={title}
+              className="rounded-lg w-full mx-auto"
+            />
+          </SwiperSlide>
+          <SwiperSlide>
+            swiper 3{" "}
+            <img
+              src={image}
+              alt={title}
+              className="rounded-lg w-full mx-auto"
+            />
+          </SwiperSlide>
+          <SwiperSlide>
+            swiper 4{" "}
+            <img
+              src={image}
+              alt={title}
+              className="rounded-lg w-full mx-auto"
+            />
+          </SwiperSlide>
+        </Swiper>
         <div className="flex items-center justify-center gap-6 my-6">
           <button className="py-2 px-4">
             <FontAwesomeIcon icon={faChevronLeft} />
@@ -109,10 +156,7 @@ const ProductItem = ({ product }) => {
         <p className="leading-normal mt-6">{description}</p>
 
         {/* size guide chart */}
-        <img
-          src={sizeGuideImg}
-          className="mt-8 rounded-sm"
-        />
+        <img src={sizeGuideImg} className="mt-8 rounded-sm" />
       </div>
     </section>
   );

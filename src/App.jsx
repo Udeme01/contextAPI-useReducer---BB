@@ -22,8 +22,14 @@ function App() {
         },
         {
           path: ":productId",
-          element: <ProductDetails />,
-          loader: productDetailLoader,
+          element: <ProductRoot />,
+          children: [
+            {
+              index: true,
+              element: <ProductDetails />,
+              loader: productDetailLoader,
+            },
+          ],
         },
       ],
     },

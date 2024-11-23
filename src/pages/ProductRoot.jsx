@@ -1,13 +1,19 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
-import Footer from "../components/Footer";
+import { Outlet, Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeftLong } from "@fortawesome/free-solid-svg-icons";
 
 const ProductRoot = () => {
   return (
     <>
-      <button>back</button>
+      <Link
+        to=".."
+        className="py-6 ml-10 flex items-center justify-start gap-4 capitalize tracking-widest font-semibold"
+      >
+        <FontAwesomeIcon icon={faArrowLeftLong} size="3x" />
+        go back
+      </Link>
       <Outlet />
-      <Footer />
     </>
   );
 };
