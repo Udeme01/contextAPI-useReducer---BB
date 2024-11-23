@@ -23,26 +23,28 @@ const shoppingCartReducer = (state, action) => {
     const updatedItems = [...state.items]; // COPY THE PREVIOUS ITEMS FROM THE CART. i.e, CREATES A COPY OF THE CURRENT STATE'S ITEM ARRAY.
 
     const existingCartItemIndex = updatedItems.findIndex(
-      (cartItem) => cartItem.id === action.payload
+      (cartItem) => cartItem.id === action.payload.id
     );
     const existingCartItem = updatedItems[existingCartItemIndex]; // SEARCHES FOR AN EXISTING ITEM IN THE CART BASED ON THE ITEM ID.
 
     if (existingCartItem) {
+      // If the item already exists, update its quantity
       const updatedItem = {
         ...existingCartItem,
-        quantity: existingCartItem.quantity + 1,
+        quantity: existingCartItem.quantity + action.payload.quantity,
       }; // the quantity property is defined at the moment it's being used.
       updatedItems[existingCartItemIndex] = updatedItem;
     } else {
+      // If the item does not exist, add it to the cart
       const product = state.products.find(
-        (product) => product.id === action.payload
+        (product) => product.id === action.payload.id
       );
 
       updatedItems.push({
-        id: action.payload,
+        id: action.payload.id,
         name: product.title,
         price: product.price,
-        quantity: 1,
+        quantity: action.payload.quantity,
       }); // quantity here is explicitly defined when adding a new item. i.e. When adding a new item to the cart, the quantity is explicitly stated as part of the new item's properties. In this case, the quantity is set to 1, indicating that one unit of the product is being added to the cart.
     }
 
@@ -146,10 +148,13 @@ export default function CartContextProvider({ children }) {
     }
   }, []);
 
-  function handleAddItemToCart(id) {
+  function handleAddItemToCart(id, quantity) {
     shoppingCartDispatch({
       type: "ADD_ITEM",
-      payload: id,
+      payload: {
+        id,
+        quantity,
+      },
     });
   }
 

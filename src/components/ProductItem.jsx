@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { CartContext } from "./store/shopping-cart-context";
@@ -15,27 +15,13 @@ import "swiper/css/pagination";
 const ProductItem = ({ product }) => {
   const { id, description, image, title, price } = product;
 
+  const { addItemToCart, items } = useContext(CartContext);
+  console.log(items);
+
   const [quantity, setQuantity] = useState(1);
 
-  const { addItemToCart, updateCartItemQuantity } = useContext(CartContext);
-
-  const incrementQuantity = () => {
-    setQuantity((prevQuantity) => {
-      const newQuantity = prevQuantity + 1;
-      updateCartItemQuantity(id, newQuantity);
-      return newQuantity;
-    });
-  };
-
-  const decrementQuantity = () => {
-    setQuantity((prevQuantity) => {
-      if (prevQuantity > 1) {
-        const newQuantity = prevQuantity - 1;
-        updateCartItemQuantity(id, newQuantity);
-        return newQuantity;
-      }
-      return prevQuantity;
-    });
+  const handleQuantityChange = (amount) => {
+    setQuantity((prev) => Math.max(1, prev + amount)); // Ensure quantity doesn't drop below 1
   };
 
   return (
@@ -83,17 +69,8 @@ const ProductItem = ({ product }) => {
             />
           </SwiperSlide>
         </Swiper>
-        <div className="flex items-center justify-center gap-6 my-6">
-          {/* <button className="py-2 px-4">
-            <FontAwesomeIcon icon={faChevronLeft} />
-          </button>
-          <span>1/3</span>
-          <button className="py-2 px-4">
-            <FontAwesomeIcon icon={faChevronRight} />
-          </button> */}
-        </div>
       </div>
-      <div className="text-left leading-10">
+      <div className="text-left leading-10 my-8">
         <h2 className="uppercase tracking-widest leading-8">Fit-In</h2>
         <h1 className="text-left capitalize">{title}</h1>
 
@@ -148,14 +125,14 @@ const ProductItem = ({ product }) => {
           <div className="border flex items-center justify-around w-40 relative">
             <button
               className="absolute left-0 right-28"
-              onClick={decrementQuantity}
+              onClick={() => handleQuantityChange(-1)}
             >
               <FontAwesomeIcon icon={faMinus} />
             </button>
             <span>{quantity}</span>
             <button
               className="absolute right-0 left-28"
-              onClick={incrementQuantity}
+              onClick={() => handleQuantityChange(1)}
             >
               <FontAwesomeIcon icon={faPlus} />
             </button>
@@ -165,9 +142,9 @@ const ProductItem = ({ product }) => {
         {/* add to cart */}
         <section className="border mt-10">
           <button
-            onClick={() => addItemToCart(id)}
+            onClick={() => addItemToCart(id, quantity)}
             // disabled={disabled}
-            // className={`${
+            // className={`${`
             //   disabled
             //     ? "bg-[#f7d9a1] cursor-not-allowed"
             //     : "bg-[#f4b115] hover:bg-[#f5b744] cursor-pointer"

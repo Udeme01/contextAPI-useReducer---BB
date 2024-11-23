@@ -387,10 +387,10 @@ h1 {
   color: #f5b744;
 }
 
-.swiper-button-next:hover,
+/* .swiper-button-next:hover,
 .swiper-button-prev:hover {
   color: #6b5b44;
-}
+} */
 
 /* Pagination styles */
 .swiper-pagination-bullet {
