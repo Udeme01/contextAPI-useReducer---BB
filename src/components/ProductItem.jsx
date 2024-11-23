@@ -1,30 +1,50 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faChevronLeft,
-  faChevronRight,
-  faMinus,
-  faPlus,
-} from "@fortawesome/free-solid-svg-icons";
+import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { CartContext } from "./store/shopping-cart-context";
 import sizeGuideImg from "../assets/sizeGuide.jpg";
 
 // SWIPER JS
 import { Swiper, SwiperSlide } from "swiper/react";
-import {  FreeMode } from "swiper/modules";
+import { Navigation, Pagination } from "swiper/modules";
 
 import "swiper/css";
-import "swiper/css/free-mode";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 const ProductItem = ({ product }) => {
   const { id, description, image, title, price } = product;
-  const { addItemToCart } = useContext(CartContext);
+
+  const [quantity, setQuantity] = useState(1);
+
+  const { addItemToCart, updateCartItemQuantity } = useContext(CartContext);
+
+  const incrementQuantity = () => {
+    setQuantity((prevQuantity) => {
+      const newQuantity = prevQuantity + 1;
+      updateCartItemQuantity(id, newQuantity);
+      return newQuantity;
+    });
+  };
+
+  const decrementQuantity = () => {
+    setQuantity((prevQuantity) => {
+      if (prevQuantity > 1) {
+        const newQuantity = prevQuantity - 1;
+        updateCartItemQuantity(id, newQuantity);
+        return newQuantity;
+      }
+      return prevQuantity;
+    });
+  };
+
   return (
     <section className="w-[85%] mx-auto text-center borde rounded-lg h-full">
       <div className="mx-auto">
         <Swiper
-          modules={[FreeMode]}
-          free-mode={{ enabled: true }}
+          modules={[Navigation, Pagination]}
+          navigation
+          pagination={{ clickable: true }}
           spaceBetween={50}
           slidesPerView={1}
           onSlideChange={() => console.log("slide change")}
@@ -64,17 +84,17 @@ const ProductItem = ({ product }) => {
           </SwiperSlide>
         </Swiper>
         <div className="flex items-center justify-center gap-6 my-6">
-          <button className="py-2 px-4">
+          {/* <button className="py-2 px-4">
             <FontAwesomeIcon icon={faChevronLeft} />
           </button>
           <span>1/3</span>
           <button className="py-2 px-4">
             <FontAwesomeIcon icon={faChevronRight} />
-          </button>
+          </button> */}
         </div>
       </div>
       <div className="text-left leading-10">
-        <h2 className="uppercase tracking-widest leading-3">Fit-In</h2>
+        <h2 className="uppercase tracking-widest leading-8">Fit-In</h2>
         <h1 className="text-left capitalize">{title}</h1>
 
         {/* price & shipping */}
@@ -126,11 +146,17 @@ const ProductItem = ({ product }) => {
         <section>
           <h2 className="capitalize tracking-widest mt-4">Quantity</h2>
           <div className="border flex items-center justify-around w-40 relative">
-            <button className="absolute left-0 right-28">
+            <button
+              className="absolute left-0 right-28"
+              onClick={decrementQuantity}
+            >
               <FontAwesomeIcon icon={faMinus} />
             </button>
-            <span>1</span>
-            <button className="absolute right-0 left-28">
+            <span>{quantity}</span>
+            <button
+              className="absolute right-0 left-28"
+              onClick={incrementQuantity}
+            >
               <FontAwesomeIcon icon={faPlus} />
             </button>
           </div>

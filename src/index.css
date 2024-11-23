@@ -378,3 +378,31 @@ h1 {
     transform: translateX(0);
   }
 }
+
+/* swiperJS */
+
+/* Navigation styles */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #f5b744;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  color: #6b5b44;
+}
+
+/* Pagination styles */
+.swiper-pagination-bullet {
+  background-color: #fff2db;
+  opacity: 0.7;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #f5b744;
+  opacity: 1;
+}
+
+.swiper-pagination-bullet:hover {
+  background-color: #6b5b44;
+}
