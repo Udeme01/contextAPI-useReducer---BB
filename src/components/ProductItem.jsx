@@ -16,27 +16,19 @@ import Close from "./Buttons/Close";
 import Checkout from "./Buttons/Checkout";
 import ContinueShopping from "./Buttons/ContinueShopping";
 
-const colorOptions = {
-  black: "#000",
-  gray: "#555",
-  red: "#cf2424",
-};
-
-const sizeOptions = {};
-
 const ProductItem = ({ product }) => {
-  const { id, description, image, title, price, colors } = product;
-  //   console.log(product);
-  colors?.map((color) => console.log(color));
-  //   console.log(colors[0]);
+  const { id, description, image, title, price, colors, sizes } = product;
+
+  //   initials
   const initialColor = colors[0];
+  const initialSize = sizes[0];
 
   //   State
   const [quantity, setQuantity] = useState(1);
   const [selectedColor, setSelectedColor] = useState(initialColor);
-  const [selectedSize, setSelectedSize] = useState("XS(4-6)");
+  const [selectedSize, setSelectedSize] = useState(initialSize);
 
-  //   console.log(selectedColor);
+  // console.log(selectedColor);
 
   //   ref
   const cartModalRef = useRef();
@@ -52,7 +44,6 @@ const ProductItem = ({ product }) => {
   const handleAddItemToCart = () => {
     addItemToCart(id, quantity);
     cartModalRef.current.open();
-    alert(selectedColor, selectedSize);
   };
 
   let modalActions = <Close />;
@@ -81,8 +72,8 @@ const ProductItem = ({ product }) => {
             pagination={{ clickable: true }}
             spaceBetween={50}
             slidesPerView={1}
-            onSlideChange={() => console.log("slide change")}
-            onSwiper={(swiper) => console.log(swiper)}
+            // onSlideChange={() => console.log("slide change")}
+            // onSwiper={(swiper) => console.log(swiper)}
           >
             <SwiperSlide>
               swiper 1
@@ -150,48 +141,27 @@ const ProductItem = ({ product }) => {
                   />
                 );
               })}
-
-              {/* {["#000", "#555", "#cf2424"].map((color, index) => {
-                // console.log(color);
-                return (
-                  <button
-                    key={index}
-                    className={`border border-[#f7d9a1] p-5 rounded-full ${
-                      selectedColor === color && "border-[#be8c2d]"
-                    }`}
-                    style={{ backgroundColor: color }}
-                    onClick={() => setSelectedColor(color)}
-                  />
-                );
-              })} */}
             </div>
           </section>
 
           {/* size */}
           <section>
             <h2 className="capitalize tracking-widest mt-4">
-              Size: XS (4 - 6)
+              Size: {selectedSize}
             </h2>
             <div>
               {/* onClick of btn, bg-color becomes the hovered color while txt-color becomes black-bg */}
-              <button className="border border-[#f7d9a1] p-2 m-1 ml-0 rounded-md bg-[#000] text-[#edbf68] text-sm font-medium hover:border-[#be8c2d]">
-                XS (4 - 6)
-              </button>
-              <button className="border border-[#f7d9a1] p-2 m-1 ml-0 rounded-md bg-[#000] text-[#edbf68] text-sm font-medium hover:border-[#be8c2d]">
-                S (8 - 10)
-              </button>
-              <button className="border border-[#f7d9a1] p-2 m-1 ml-0 rounded-md bg-[#000] text-[#edbf68] text-sm font-medium hover:border-[#be8c2d]">
-                M (12 - 14)
-              </button>
-              <button className="border border-[#f7d9a1] p-2 m-1 ml-0 rounded-md bg-[#000] text-[#edbf68] text-sm font-medium hover:border-[#be8c2d]">
-                L (16 - 18)
-              </button>
-              <button className="border border-[#f7d9a1] p-2 m-1 ml-0 rounded-md bg-[#000] text-[#edbf68] text-sm font-medium hover:border-[#be8c2d]">
-                XL (20 - 22)
-              </button>
-              <button className="border border-[#f7d9a1] p-2 m-1 ml-0 rounded-md bg-[#000] text-[#edbf68] text-sm font-medium hover:border-[#be8c2d]">
-                2X (24)
-              </button>
+              {sizes.map((size, index) => {
+                return (
+                  <button
+                    key={index}
+                    className="border border-[#f7d9a1] p-2 m-1 ml-0 rounded-md bg-[#000] text-[#edbf68] text-sm font-medium hover:border-[#be8c2d]"
+                    onClick={() => setSelectedSize(size)}
+                  >
+                    {size}
+                  </button>
+                );
+              })}
             </div>
           </section>
 

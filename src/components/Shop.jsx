@@ -51,7 +51,6 @@ export default function Shop() {
 
 export const loader = async () => {
   const entries = await fetchAllEntries();
-  // console.log(entries);
 
   if (!entries) {
     throw new Response(

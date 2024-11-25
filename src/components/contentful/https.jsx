@@ -7,6 +7,7 @@ export const fetchAllEntries = async () => {
   );
 
   const data = await response.json();
+  // console.log(data);
 
   // Map the assets from `includes.Asset`
   const assets = data.includes?.Asset || [];
@@ -23,7 +24,8 @@ export const fetchAllEntries = async () => {
     description: item.fields.fitinDescription || "", // Default to an empty string if undefined
     title: item.fields.fitinTitle || "Untitled", // Provide a default title if missing
     price: item.fields.fitinPrice || 0, // Default price to 0 if undefined
-    colors: item.fields.colors,
+    colors: item.fields.colors || "",
+    sizes: item.fields.sizes || "",
   }));
 };
 
@@ -57,5 +59,6 @@ export const fetchEntry = async (entryId) => {
     image: imageUrl,
     price: data.fields.fitinPrice || 0,
     colors: data.fields.colors || "",
+    sizes: data.fields.sizes || "",
   };
 };
