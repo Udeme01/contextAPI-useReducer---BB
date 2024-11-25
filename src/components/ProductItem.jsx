@@ -16,11 +16,27 @@ import Close from "./Buttons/Close";
 import Checkout from "./Buttons/Checkout";
 import ContinueShopping from "./Buttons/ContinueShopping";
 
+const colorOptions = {
+  black: "#000",
+  gray: "#555",
+  red: "#cf2424",
+};
+
+const sizeOptions = {};
+
 const ProductItem = ({ product }) => {
-  const { id, description, image, title, price } = product;
+  const { id, description, image, title, price, colors } = product;
+  //   console.log(product);
+  colors?.map((color) => console.log(color));
+  //   console.log(colors[0]);
+  const initialColor = colors[0];
 
   //   State
   const [quantity, setQuantity] = useState(1);
+  const [selectedColor, setSelectedColor] = useState(initialColor);
+  const [selectedSize, setSelectedSize] = useState("XS(4-6)");
+
+  //   console.log(selectedColor);
 
   //   ref
   const cartModalRef = useRef();
@@ -36,6 +52,7 @@ const ProductItem = ({ product }) => {
   const handleAddItemToCart = () => {
     addItemToCart(id, quantity);
     cartModalRef.current.open();
+    alert(selectedColor, selectedSize);
   };
 
   let modalActions = <Close />;
@@ -43,12 +60,11 @@ const ProductItem = ({ product }) => {
   if (items.length > 0) {
     modalActions = (
       <>
-        <span className="flex gap-2">
-          <span className="flex items-center justify-center gap-6">
-            <Close />
+        <span>
+          <ContinueShopping />
+          <span className="ml-6">
             <Checkout />
           </span>
-          <ContinueShopping />
         </span>
       </>
     );
@@ -116,12 +132,38 @@ const ProductItem = ({ product }) => {
 
           {/* colors */}
           <section>
-            <h2 className="capitalize tracking-widest mt-4">Color: black</h2>
+            <h2 className="capitalize tracking-widest mt-4">
+              Color: {selectedColor}
+            </h2>
             <div className="flex gap-4">
               {/* onClick of btn, bg-color becomes the hovered color while txt-color becomes black-bg */}
-              <button className="border border-[#f7d9a1] p-5 rounded-full bg-[#000] hover:border-[#be8c2d]"></button>
-              <button className="border border-[#f7d9a1] p-5 rounded-full bg-[#555] hover:border-[#be8c2d]"></button>
-              <button className="border border-[#f7d9a1] p-5 rounded-full bg-[#cf2424] hover:border-[#be8c2d]"></button>
+
+              {colors.map((color) => {
+                return (
+                  <button
+                    key={color}
+                    className={`border border-[#f7d9a1] p-5 rounded-full ${
+                      selectedColor === color && "border-[#be8c2d]"
+                    }`}
+                    style={{ backgroundColor: color }}
+                    onClick={() => setSelectedColor(color)}
+                  />
+                );
+              })}
+
+              {/* {["#000", "#555", "#cf2424"].map((color, index) => {
+                // console.log(color);
+                return (
+                  <button
+                    key={index}
+                    className={`border border-[#f7d9a1] p-5 rounded-full ${
+                      selectedColor === color && "border-[#be8c2d]"
+                    }`}
+                    style={{ backgroundColor: color }}
+                    onClick={() => setSelectedColor(color)}
+                  />
+                );
+              })} */}
             </div>
           </section>
 

@@ -16,6 +16,7 @@ export const loader = async ({ params }) => {
 
   try {
     const product = await fetchEntry(productId);
+    // console.log(product);
     return product;
   } catch (error) {
     throw new Response(

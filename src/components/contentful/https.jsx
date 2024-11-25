@@ -23,6 +23,7 @@ export const fetchAllEntries = async () => {
     description: item.fields.fitinDescription || "", // Default to an empty string if undefined
     title: item.fields.fitinTitle || "Untitled", // Provide a default title if missing
     price: item.fields.fitinPrice || 0, // Default price to 0 if undefined
+    colors: item.fields.colors,
   }));
 };
 
@@ -33,6 +34,7 @@ export const fetchEntry = async (entryId) => {
   );
 
   const data = await response.json();
+  // console.log(data);
 
   let imageUrl = "";
   if (data.fields.fitinImage?.sys?.id) {
@@ -54,5 +56,6 @@ export const fetchEntry = async (entryId) => {
     description: data.fields.fitinDescription || "",
     image: imageUrl,
     price: data.fields.fitinPrice || 0,
+    colors: data.fields.colors || "",
   };
 };
