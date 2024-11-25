@@ -126,18 +126,22 @@ export default function CartContextProvider({ children }) {
   // FETCH PRODUCTS FROM CONTENTFUL && LOAD CART ITEMS FROM LOCAL STORAGE ON INITIAL RENDER
   useEffect(() => {
     const fetchProducts = async () => {
-      const entries = await fetchAllEntries();
-      const products = entries.map((entry) => {
-        const { id, title, description, price, image } = entry;
-        return {
-          id,
-          title,
-          description,
-          price,
-          image,
-        };
-      });
-      shoppingCartDispatch({ type: "SET_PRODUCTS", payload: products });
+      try {
+        const entries = await fetchAllEntries();
+        const products = entries.map((entry) => {
+          const { id, title, description, price, image } = entry;
+          return {
+            id,
+            title,
+            description,
+            price,
+            image,
+          };
+        });
+        shoppingCartDispatch({ type: "SET_PRODUCTS", payload: products });
+      } catch (error) {
+        console.error("Failed to fetch products:", error);
+      }
     };
 
     fetchProducts();
@@ -146,15 +150,12 @@ export default function CartContextProvider({ children }) {
     if (savedCartItems) {
       shoppingCartDispatch({ type: "SET_ITEMS", payload: savedCartItems });
     }
-  }, []);
+  }, []); // handle error here...
 
   function handleAddItemToCart(id, quantity) {
     shoppingCartDispatch({
       type: "ADD_ITEM",
-      payload: {
-        id,
-        quantity,
-      },
+      payload: { id, quantity },
     });
   }
 
