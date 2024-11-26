@@ -42,8 +42,8 @@ const ProductItem = ({ product }) => {
 
   //   add item to cart func
   const handleAddItemToCart = () => {
-    addItemToCart(id, quantity);
-    cartModalRef.current.open();
+    addItemToCart(id, quantity, image, selectedColor, selectedSize);
+    cartModalRef.current?.open();
   };
 
   let modalActions = <Close />;
@@ -168,7 +168,7 @@ const ProductItem = ({ product }) => {
           {/* Quantity */}
           <section>
             <h2 className="capitalize tracking-widest mt-4">Quantity</h2>
-            <div className="border flex items-center justify-around w-40 relative">
+            <div className="border flex items-center justify-around w-40 relative p-2">
               <button
                 className="absolute left-0 right-28"
                 onClick={() => handleQuantityChange(-1)}

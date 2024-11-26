@@ -8,6 +8,7 @@ export const CartContext = createContext({
   addItemToCart: () => {},
   updateCartItemQuantity: () => {},
   searchItem: () => {},
+  message: "",
 });
 
 // reducer function...
@@ -20,32 +21,43 @@ const shoppingCartReducer = (state, action) => {
   }
 
   if (action.type === "ADD_ITEM") {
-    const updatedItems = [...state.items]; // COPY THE PREVIOUS ITEMS FROM THE CART. i.e, CREATES A COPY OF THE CURRENT STATE'S ITEM ARRAY.
+    const updatedItems = [...state.items];
 
     const existingCartItemIndex = updatedItems.findIndex(
-      (cartItem) => cartItem.id === action.payload.id
+      (cartItem) =>
+        cartItem.id === action.payload.id &&
+        cartItem.selectedColor === action.payload.selectedColor &&
+        cartItem.selectedSize === action.payload.selectedSize
     );
-    const existingCartItem = updatedItems[existingCartItemIndex]; // SEARCHES FOR AN EXISTING ITEM IN THE CART BASED ON THE ITEM ID.
+
+    const existingCartItem = updatedItems[existingCartItemIndex]; // SEARCHES FOR AN EXISTING ITEM IN THE CART BASED ON THE ITEM ID, COLOR & SIZE.
 
     if (existingCartItem) {
       // If the item already exists, update its quantity
-      const updatedItem = {
-        ...existingCartItem,
-        quantity: existingCartItem.quantity + action.payload.quantity,
-      }; // the quantity property is defined at the moment it's being used.
-      updatedItems[existingCartItemIndex] = updatedItem;
+      // const updatedItem = {
+      //   ...existingCartItem,
+      //   quantity: existingCartItem.quantity + action.payload.quantity,
+      // };
+      // updatedItems[existingCartItemIndex] = updatedItem;
+      return {
+        ...state,
+        message: "This item is already in your cart.",
+      };
     } else {
       // If the item does not exist, add it to the cart
-      const product = state.products.find(
-        (product) => product.id === action.payload.id
-      );
+      const product = state.products.find((product) => {
+        return product.id === action.payload.id;
+      });
 
       updatedItems.push({
         id: action.payload.id,
         name: product.title,
         price: product.price,
+        image: action.payload.image,
         quantity: action.payload.quantity,
-      }); // quantity here is explicitly defined when adding a new item. i.e. When adding a new item to the cart, the quantity is explicitly stated as part of the new item's properties. In this case, the quantity is set to 1, indicating that one unit of the product is being added to the cart.
+        selectedColor: action.payload.selectedColor,
+        selectedSize: action.payload.selectedSize,
+      });
     }
 
     // ADD_TO_CART_STORAGE
@@ -54,6 +66,7 @@ const shoppingCartReducer = (state, action) => {
     return {
       ...state,
       items: updatedItems,
+      message: "",
     };
   }
 
@@ -120,6 +133,7 @@ export default function CartContextProvider({ children }) {
       items: [],
       products: [],
       searchResults: [],
+      message: "",
     }
   );
 
@@ -130,6 +144,7 @@ export default function CartContextProvider({ children }) {
         const entries = await fetchAllEntries();
         const products = entries.map((entry) => {
           const { id, title, description, price, image } = entry;
+          // console.log(entry);
           return {
             id,
             title,
@@ -152,10 +167,16 @@ export default function CartContextProvider({ children }) {
     }
   }, []); // handle error here...
 
-  function handleAddItemToCart(id, quantity) {
+  function handleAddItemToCart(
+    id,
+    quantity,
+    image,
+    selectedColor,
+    selectedSize
+  ) {
     shoppingCartDispatch({
       type: "ADD_ITEM",
-      payload: { id, quantity },
+      payload: { id, quantity, image, selectedColor, selectedSize },
     });
   }
 
@@ -183,19 +204,10 @@ export default function CartContextProvider({ children }) {
     addItemToCart: handleAddItemToCart,
     updateCartItemQuantity: handleUpdateCartItemQuantity,
     searchItem: handleSearchItem,
+    message: shoppingCartState.message,
   };
 
   return (
     <CartContext.Provider value={ctxValue}>{children}</CartContext.Provider>
   );
 }
-
-// the context object values here aren't getting used in any way, they're just for auto-completion.
-
-// 1. Existing vs. New Items:
-// For existing items, quantity is derived from the existing item.
-// For new items, quantity is explicitly set to 1.
-
-// 2. Creation Time:
-// For existing items, quantity is accessed from the existing item.
-// For new items, quantity is defined right at the moment the new item is created.

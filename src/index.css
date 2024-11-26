@@ -259,9 +259,9 @@ h1 {
 }
 
 #cart-items li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  /* display: flex; */
+  /* justify-content: space-between;
+  align-items: center; */
   padding: 0.5rem 1rem;
   background: #fbd392;
   border-radius: 5px;

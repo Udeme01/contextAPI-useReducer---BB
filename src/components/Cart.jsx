@@ -1,5 +1,8 @@
 import { useContext } from "react";
 import { CartContext } from "./store/shopping-cart-context";
+import sampleImg from "../assets/dream-gown.jpg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 export default function Cart() {
   const { items, updateCartItemQuantity } = useContext(CartContext);
@@ -17,24 +20,42 @@ export default function Cart() {
         <ul id="cart-items">
           {items.map((item) => {
             const formattedPrice = `$${item.price.toFixed(2)}`;
-            // console.log(item);
+            const { id, name, image, quantity, selectedColor, selectedSize } =
+              item;
             return (
-              <li key={item.id}>
-                <div>
-                  <span>{item.name}</span>
-                  <span> ({formattedPrice})</span>
-                </div>
-                <div className="cart-item-actions">
-                  <button onClick={() => updateCartItemQuantity(item.id, -1)}>
-                    -
-                  </button>
-                  <span className="flex items-center justify-center font-bold">
-                    {item.quantity}
+              <li key={id}>
+                <div className="flex w-full">
+                  <img
+                    src={image}
+                    alt={name}
+                    className="w-32 h-32 rounded-md"
+                  />
+
+                  <span className="p-2 flex flex-col gap-1 font-bold">
+                    <h6 className="">{name}</h6>
+                    <p>{formattedPrice}</p>
+                    <p>Color: {selectedColor}</p>
+                    <p>Size: {selectedSize}</p>
                   </span>
-                  <button onClick={() => updateCartItemQuantity(item.id, 1)}>
-                    +
-                  </button>
                 </div>
+                {/* quantity */}
+                <section className="mt-4 border border-[#735932] w-fit">
+                  <div className="flex items-center justify-around w-40 relative p-4">
+                    <button
+                      className="absolute left-0 right-28"
+                      onClick={() => updateCartItemQuantity(item.id, -1)}
+                    >
+                      <FontAwesomeIcon icon={faMinus} />
+                    </button>
+                    <span>{quantity}</span>
+                    <button
+                      className="absolute right-0 left-28"
+                      onClick={() => updateCartItemQuantity(item.id, 1)}
+                    >
+                      <FontAwesomeIcon icon={faPlus} />
+                    </button>
+                  </div>
+                </section>
               </li>
             );
           })}
