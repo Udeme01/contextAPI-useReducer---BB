@@ -15,17 +15,17 @@ import logo from "/logo.png";
 
 export default function Header() {
   const [query, setQuery] = useState("");
-  const [showInput, setShowInput] = useState(false);
+  // const [showInput, setShowInput] = useState(false);
 
-  const handleShowInput = () => {
-    setShowInput((prevState) => !prevState);
-  };
+  // const handleShowInput = () => {
+  //   setShowInput((prevState) => !prevState);
+  // };
 
-  const handleCloseInput = () => {
-    setShowInput(false);
-    setQuery("");
-    searchItem("");
-  };
+  // const handleCloseInput = () => {
+  //   setShowInput(false);
+  //   setQuery("");
+  //   searchItem("");
+  // };
 
   const { items, searchItem } = useContext(CartContext);
   const modal = useRef();
@@ -75,7 +75,7 @@ export default function Header() {
         id="main-header"
         className="flex items-center justify-between w-[85%] mx-auto xl:max-w-7xl xl:mx-auto"
       >
-        {showInput ? (
+        {/* {showInput ? (
           <span className="searchWrapper">
             <Input
               ref={inputRef}
@@ -103,25 +103,26 @@ export default function Header() {
               </p>
             </button>
           </span>
-        ) : (
-          <>
-            <Link to={`/`} id="main-title">
-              <img src={logo} alt="Elegant model" />
-              <h1 className="hidden md:block">fit-in</h1>
-            </Link>
-            <p>
+        ) : ( */}
+        <>
+          <Link to={`/`} id="main-title">
+            <img src={logo} alt="Elegant model" />
+            <h1 className="hidden md:block">fit-in</h1>
+          </Link>
+          {/* work on search feature later... */}
+          {/* <p>
               <button onClick={handleShowInput}>
                 <FontAwesomeIcon icon={faMagnifyingGlass} size="lg" />
               </button>
-            </p>
-            <p>
-              <button onClick={handleOpenCartClick}>
-                <FontAwesomeIcon icon={faBagShopping} size="lg" />
-                <span>{cartQuantity}</span>
-              </button>
-            </p>
-          </>
-        )}
+            </p> */}
+          <p>
+            <button onClick={handleOpenCartClick}>
+              <FontAwesomeIcon icon={faBagShopping} size="lg" />
+              <span>{cartQuantity}</span>
+            </button>
+          </p>
+        </>
+        {/* // )}  */}
       </header>
       <main className="hero">
         <h1 className="md:hidden">Fit-In</h1>

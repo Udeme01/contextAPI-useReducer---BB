@@ -1,13 +1,14 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
-    
-  const handleCheckout = (e) => {
-    e.preventDefault();
-    alert("checkingOut");
+  const navigate = useNavigate();
+
+  const handleChecout = () => {
+    navigate("/checkout");
   };
 
-  return <button onClick={handleCheckout}>Checkout</button>;
+  return <button onClick={handleChecout}>checkout</button>;
 };
 
 export default Checkout;

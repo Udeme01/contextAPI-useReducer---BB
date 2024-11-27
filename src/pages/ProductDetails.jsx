@@ -1,10 +1,10 @@
 import React from "react";
 import ProductItem from "../components/ProductItem";
-import { useLoaderData } from "react-router-dom";
+import { useRouteLoaderData } from "react-router-dom";
 import { fetchEntry } from "../components/contentful/https";
 
 const ProductDetails = () => {
-  const product = useLoaderData();
+  const product = useRouteLoaderData("product-detail");
 
   return <ProductItem product={product} />;
 };

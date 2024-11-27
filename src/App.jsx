@@ -7,6 +7,7 @@ import ProductDetails, {
 } from "./pages/ProductDetails.jsx";
 import Shop, { loader as productsLoader } from "./components/Shop.jsx";
 import ProductRoot from "./pages/ProductRoot.jsx";
+import CheckoutForm from "./components/Forms/CheckoutForm.jsx";
 
 function App() {
   const router = createBrowserRouter([
@@ -22,14 +23,19 @@ function App() {
         },
         {
           path: ":productId",
+          id: "product-detail",
           element: <ProductRoot />,
+          loader: productDetailLoader,
           children: [
             {
               index: true,
               element: <ProductDetails />,
-              loader: productDetailLoader,
             },
           ],
+        },
+        {
+          path: "/checkout",
+          element: <CheckoutForm />,
         },
       ],
     },
