@@ -73,8 +73,10 @@ const shoppingCartReducer = (state, action) => {
   if (action.type === "UPDATE_ITEM") {
     const updatedItems = [...state.items];
     const updatedItemIndex = updatedItems.findIndex(
-      (item) => item.id === action.payload.productId
+      (item) => `${item.id}-${item.selectedSize}-${item.selectedColor}` === action.payload.productId
     );
+
+    // item.id === action.payload.productId
 
     const updatedItem = {
       ...updatedItems[updatedItemIndex], // spreads all properties of the item at updatedItemIndex into a new object...
