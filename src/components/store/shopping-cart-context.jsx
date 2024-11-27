@@ -8,6 +8,7 @@ export const CartContext = createContext({
   addItemToCart: () => {},
   updateCartItemQuantity: () => {},
   searchItem: () => {},
+  clearItem: () => {},
   message: "",
 });
 
@@ -73,7 +74,9 @@ const shoppingCartReducer = (state, action) => {
   if (action.type === "UPDATE_ITEM") {
     const updatedItems = [...state.items];
     const updatedItemIndex = updatedItems.findIndex(
-      (item) => `${item.id}-${item.selectedSize}-${item.selectedColor}` === action.payload.productId
+      (item) =>
+        `${item.id}-${item.selectedSize}-${item.selectedColor}` ===
+        action.payload.productId
     );
 
     // item.id === action.payload.productId
@@ -96,6 +99,23 @@ const shoppingCartReducer = (state, action) => {
     return {
       ...state,
       items: updatedItems,
+    };
+  }
+
+  if (action.type === "CLEAR_ITEM") {
+    const { productId } = action.payload;
+
+    const updatedItems = state.items.filter(
+      (item) =>
+        `${item.id}-${item.selectedSize}-${item.selectedColor}` !== productId
+    );
+
+    localStorage.setItem("cartItems", JSON.stringify(updatedItems));
+
+    return {
+      ...state,
+      items: updatedItems,
+      // message: `Item ${productId} removed from cart.`,
     };
   }
 
@@ -199,14 +219,22 @@ export default function CartContextProvider({ children }) {
     });
   }
 
+  function handleClearItem(productId) {
+    shoppingCartDispatch({
+      type: "CLEAR_ITEM",
+      payload: { productId },
+    });
+  }
+
   const ctxValue = {
     items: shoppingCartState.items,
     products: shoppingCartState.products,
     searchResults: shoppingCartState.searchResults,
+    message: shoppingCartState.message,
     addItemToCart: handleAddItemToCart,
     updateCartItemQuantity: handleUpdateCartItemQuantity,
     searchItem: handleSearchItem,
-    message: shoppingCartState.message,
+    clearItem: handleClearItem,
   };
 
   return (

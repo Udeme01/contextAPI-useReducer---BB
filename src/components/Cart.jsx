@@ -1,11 +1,10 @@
 import { useContext } from "react";
 import { CartContext } from "./store/shopping-cart-context";
-import sampleImg from "../assets/dream-gown.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus, faPlus, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 export default function Cart() {
-  const { items, updateCartItemQuantity } = useContext(CartContext);
+  const { items, updateCartItemQuantity, clearItem } = useContext(CartContext);
 
   const totalPrice = items.reduce(
     (acc, item) => acc + item.price * item.quantity,
@@ -62,7 +61,7 @@ export default function Cart() {
                       </button>
                     </div>
                   </section>
-                  <button>
+                  <button onClick={() => clearItem(productIdSpecific)}>
                     <FontAwesomeIcon
                       icon={faTrashCan}
                       size="2x"
