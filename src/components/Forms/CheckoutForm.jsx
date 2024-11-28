@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { CartContext } from "../store/shopping-cart-context";
 
 const CheckoutForm = () => {
@@ -17,6 +17,62 @@ const CheckoutForm = () => {
   );
   const formattedTotalPrice = `$${subtotalPrice.toFixed(2)}`;
 
+  const [userDetails, setUserDetails] = useState({
+    firstname: "",
+    lastname: "",
+    address: "",
+    email: "",
+    phone: "",
+  });
+
+  const businessWhatsAppNumber = "+2347046780531"; // Replace with actual WhatsApp number
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setUserDetails((prevDetails) => ({ ...prevDetails, [name]: value }));
+  };
+
+  const handleProceed = () => {
+    // Generate WhatsApp message
+    const productList = items
+      .map((item, index) => {
+        const {
+          id,
+          image,
+          name,
+          price,
+          quantity,
+          selectedColor,
+          selectedSize,
+        } = item;
+        const productPrice = quantity * price;
+        return `${
+          index + 1
+        }. ${name} (${selectedSize}, ${selectedColor}) - ${productPrice} Link: http://www.localhost:5173/${id}`;
+      })
+      .join("\n");
+
+    const message = `
+Hello, I want to place an order:
+    
+*User Details:*
+- FirstName: ${userDetails.firstname}
+- LastName: ${userDetails.lastname}
+- Address: ${userDetails.address}
+- Email: ${userDetails.email}
+- Phone: ${userDetails.phone}
+
+*Products:*
+${productList}
+    `;
+
+    // Open WhatsApp with pre-filled message
+    const encodedMessage = encodeURIComponent(message);
+    window.open(
+      `https://wa.me/${businessWhatsAppNumber}?text=${encodedMessage}`
+    );
+  };
+
   return (
     <>
       <form className="m-8">
@@ -28,6 +84,8 @@ const CheckoutForm = () => {
             type="text"
             id="firstname"
             name="firstname"
+            value={userDetails.firstname}
+            onChange={handleInputChange}
             className={inputStyles}
           />
         </p>
@@ -39,6 +97,8 @@ const CheckoutForm = () => {
             type="text"
             id="lastname"
             name="lastname"
+            value={userDetails.lastname}
+            onChange={handleInputChange}
             className={inputStyles}
           />
         </p>
@@ -46,7 +106,14 @@ const CheckoutForm = () => {
           <label className={labelStyles} htmlFor="email">
             Email
           </label>
-          <input type="email" id="email" name="email" className={inputStyles} />
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={userDetails.email}
+            onChange={handleInputChange}
+            className={inputStyles}
+          />
         </p>
         <p className={inputContainer}>
           <label className={labelStyles} htmlFor="address">
@@ -56,6 +123,8 @@ const CheckoutForm = () => {
             type="text"
             id="address"
             name="address"
+            value={userDetails.address}
+            onChange={handleInputChange}
             className={inputStyles}
           />
         </p>
@@ -63,7 +132,14 @@ const CheckoutForm = () => {
           <label className={labelStyles} htmlFor="phone">
             Phone
           </label>
-          <input type="tel" id="phone" name="phone" className={inputStyles} />
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            value={userDetails.phone}
+            onChange={handleInputChange}
+            className={inputStyles}
+          />
         </p>
         {/* <div className="flex gap-4">
           <input type="checkbox" className="border-none bg-transparent" />
@@ -129,6 +205,7 @@ const CheckoutForm = () => {
           </span>
         </section>
         <button
+          onClick={handleProceed}
           type="button"
           className="text-center flex items-center justify-center w-full border p-6 font-medium text-xl tracking-widest capitalize rounded-md"
         >
