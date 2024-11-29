@@ -69,12 +69,53 @@ ${productList}
       }}
       validate={(values) => {
         const errors = {};
+
+        // validate First Name
+        if (!values.firstname.trim()) {
+          errors.firstname = "Firstname is Required";
+        } else if (values.firstname.length < 2) {
+          errors.firstname = "Firstname must be at least 2 characters long";
+        } else if (!/^[a-zA-Z\s-]+$/.test(values.firstname)) {
+          errors.firstname =
+            "First name can only contain letters, spaces, or hyphens";
+        }
+
+        // validate Last Name
+        if (!values.lastname) {
+          errors.lastname = "Lastname is Required";
+        } else if (values.lastname.length < 2) {
+          errors.lastname = "Lastname must be at least 2 characters long";
+        } else if (!/^[a-zA-Z\s-]+$/.test(values.lastname)) {
+          errors.lastname =
+            "Last name can only contain letters, spaces, or hyphens";
+        }
+
+        // validate Email
         if (!values.email) {
-          errors.email = "Required";
+          errors.email = "Email is Required";
         } else if (
-          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+          !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i.test(
+            values.email
+          )
         ) {
-          errors.email = "Invalid email address";
+          errors.email = "Please enter a valid email address";
+        }
+
+        // validate Address
+        if (!values.address.trim()) {
+          errors.address = "Address is Required";
+        } else if (values.address.length < 5) {
+          errors.address = "Addresses must be at least 5 characters long";
+        } else if (!/^[a-zA-Z0-9\s,.-]+$/.test(values.address)) {
+          errors.address = "Address contains invalid characters";
+        }
+
+        // valida Phone Number
+        if (!values.phone.trim()) {
+          errors.phone = "Phone number is Required";
+        } else if (!/^\+?[0-9]{10,15}$/.test(values.phone)) {
+          errors.phone =
+            "Phone number must be 10-15 digits and can include a country code (e.g., +234)";
         }
         return errors;
       }}
@@ -136,6 +177,7 @@ ${productList}
               onBlur={handleBlur}
               errors={errors.phone && touched.phone && errors.phone}
             />
+            <input type="tel" />
           </section>
           <section>
             <button
@@ -220,3 +262,20 @@ ${productList}
 export default CheckoutForm;
 
 // ₦
+
+// Explanation of Validation Rules
+// FIRST NAME & LAST NAME:
+// Checks for non-empty values.
+// Minimum length requirement (2 characters).
+// Only allows alphabets, spaces, and hyphens (e.g., names like "Anne-Marie" or "John Doe").
+
+// EMAIL:
+// Follows strict email regex for valid formats (e.g., user@example.com).
+
+// ADDRESS:
+// Requires at least 5 characters.
+// Allows letters, numbers, spaces, commas, periods, and hyphens (useful for international addresses).
+
+// PHONE NUMBER:
+// Accepts only digits (10-15 characters).
+// Optionally supports a + sign for country codes.

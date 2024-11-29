@@ -24,8 +24,12 @@ const Input = forwardRef(({ clearInput, ...props }, ref) => {
 export default Input;
 
 export const CheckoutInput = ({ label, errors, ...props }) => {
-  const inputStyles = `bg-transparent rounded-md p-4 outline-none outline-[#464444] focus:outline-4`;
-  const labelStyles = `text-lg tracking-wide text-[#464444] flex flex-col gap-2 my-6`;
+  const inputStyles = `bg-transparent rounded-md p-4 outline-none focus:outline-4 ${
+    errors ? "outline-red-400" : "outline-[#464444]"
+  }`;
+  const labelStyles = `text-lg tracking-wide flex flex-col gap-2 my-6 ${
+    errors ? "text-red-400" : "text-[#464444]"
+  }`;
   return (
     <label className={labelStyles}>
       {label}
