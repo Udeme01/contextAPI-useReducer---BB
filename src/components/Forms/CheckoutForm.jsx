@@ -35,6 +35,7 @@ const CheckoutForm = () => {
           *Product Name:* ${name}
           *Product Size:* ${selectedSize}
           *Product Color:* ${selectedColor}
+          *Quantity:* ${quantity}
           *Product Price:* ${productPrice}
           *Product Link:* Link: https://fitin-nine.vercel.app/${id}
         `;
