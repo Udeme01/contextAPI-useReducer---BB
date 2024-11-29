@@ -32,11 +32,11 @@ const CheckoutForm = () => {
         } = item;
         const productPrice = quantity * price;
         return `${index + 1}. 
-          Product Name: ${name}
-          Product Size: ${selectedSize}
-          Product Color: ${selectedColor})
-          Product Price: ${productPrice}
-          Product Link: Link: https://fitin-nine.vercel.app/${id}
+          *Product Name:* ${name}
+          *Product Size:* ${selectedSize}
+          *Product Color:* ${selectedColor}
+          *Product Price:* ${productPrice}
+          *Product Link:* Link: https://fitin-nine.vercel.app/${id}
         `;
       })
       .join("\n");
