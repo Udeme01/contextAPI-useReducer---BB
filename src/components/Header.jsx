@@ -125,9 +125,10 @@ export default function Header() {
         {/* // )}  */}
       </header>
       <main className="hero">
-        <h1 className="md:hidden">Fit-In</h1>
-        <p className="px-4">
-          Carefully crafted to help you be your most Confident and Stylish self.
+        <h1 className="md:hidden font-medium">Fit-In</h1>
+        <p className="px-4 text-[#464444]">
+          Every fit-in creation is a labor of love, crafting confidence-boosting
+          attire for him and her.
         </p>
         <h2>
           <FontAwesomeIcon icon={faInstagram} />

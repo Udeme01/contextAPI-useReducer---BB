@@ -5,13 +5,13 @@ import { faInstagram, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 
 const Footer = () => {
   return (
-    <footer className="mt-16 bg-[#5f4e33]">
+    <footer className="mt-16 bg-[#464444] text-[#fff]">
       <section className="flex flex-col py-8 w-[85%] mx-auto xl:max-w-7xl xl:mx-auto">
-        <h1>fit-in</h1>
+        <h1 className="text-[#fff]">fit-in</h1>
         <section className="grid sm:grid-cols-2">
           <section className="my-6 sm:my-0">
-            <h4 className="text-[#fbd392] my-6">Information</h4>
-            <ul className="flex flex-col gap-5">
+            <h4 className="text-[#fff] my-6 text-xl">Information</h4>
+            <ul className="flex flex-col gap-5 text-[#fff]">
               <li>
                 <a href="#" className="text-sm leading-6">
                   About Us
@@ -55,7 +55,7 @@ const Footer = () => {
             </ul>
           </section>
           <section>
-            <h4 className="text-[#fbd392] my-6">Contact Us</h4>
+            <h4 className="text-[#fff] my-6 text-xl">Contact Us</h4>
             <div className="text-sm">
               <p>
                 3 Bello Cresent

@@ -14,8 +14,9 @@ body {
   font-family: "Montserrat", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(#31220b, #382e1b);
-  color: #f3e7d4;
+  /* background: linear-gradient(#31220b, #382e1b); */
+  background-color: #ebe6e6;
+  color: #000;
   min-height: 100vh;
   /* padding: 0 2rem; */
   width: 100%;
@@ -41,8 +42,7 @@ body {
 h1 {
   text-align: center;
   text-transform: uppercase;
-  color: #edbf68;
-  text-shadow: 0 0 4px rgba(35, 34, 34, 0.4);
+  color: #464444;
   font-size: 2rem;
   margin: 0;
   cursor: pointer;
@@ -54,7 +54,7 @@ h1 {
   border: none;
   border-radius: 5px;
   padding: 0.5rem 1.5rem;
-  color: #edbf68;
+  color: #464444;
   font-size: 1.25rem;
   cursor: pointer;
   position: relative;
@@ -65,10 +65,12 @@ h1 {
   right: 0%;
   top: 0%;
   transform: translate(-50%, -50%);
-  background-color: #201e1a;
+  background-color: #464444;
+  color: #fff;
   padding: 0.35rem;
   border-radius: 12px;
-  font-size: 1rem;
+  font-size: 1.2rem;
+  font-weight: medium;
 }
 
 .searchInputContainer {
@@ -127,23 +129,30 @@ h1 {
 }
 
 .hero h2 {
-  font-size: 1.2rem;
-  color: #fff;
+  font-size: 1.5rem;
+  color: #464444;
   text-align: center;
 }
 
 .hero h2 :nth-child(1),
 .hero h2 :nth-child(2) {
-  background-color: #735932;
-  padding: 0.5rem;
+  background-color: #00000015;
+  padding: 0.75rem;
   margin-left: 0.75rem;
   border-radius: 2rem;
   cursor: pointer;
 }
 
-/* #shop {
+.hero h2 :nth-child(1):hover,
+.hero h2 :nth-child(2):hover {
+  background-color: #0000000e;
+}
+
+#shop {
   margin: 2rem auto;
-} */
+  padding: 3rem 0;
+  background-color: #46444413;
+}
 
 /* #shop h2 {
   font-size: 1.2rem;
@@ -172,7 +181,7 @@ h1 {
 
 .product {
   height: 100%;
-  background: #5f4e33;
+  background: #fff;
   border-radius: 6px;
   display: flex;
   flex-direction: column;
@@ -194,18 +203,12 @@ h1 {
 
 .product-content h3 {
   font-size: 1.25rem;
-  color: #fbd392;
+  color: #fff;
   margin-bottom: 0.15rem;
 }
 
 .product:hover .product-content h3 {
   text-decoration: underline;
-}
-
-.product-price {
-  font-size: 1rem;
-  color: #d1b68b;
-  margin: 0;
 }
 
 .product-actions {
@@ -222,7 +225,6 @@ h1 {
   border: none;
   border-radius: 5px;
   padding: 0.5rem 1rem;
-  color: #201e1a;
   font-size: 1rem;
 }
 
@@ -244,7 +246,8 @@ h1 {
 
 #modal h2 {
   font-size: 1.5rem;
-  color: #4f3807;
+  font-weight: bold;
+  color: #464444;
   text-transform: uppercase;
   margin: 0;
 }
@@ -263,7 +266,7 @@ h1 {
   /* justify-content: space-between;
   align-items: center; */
   padding: 0.5rem 1rem;
-  background: #fbd392;
+  background-color: #46444410;
   border-radius: 5px;
   font-size: 0.9rem;
 }
@@ -384,7 +387,7 @@ h1 {
 /* Navigation styles */
 .swiper-button-next,
 .swiper-button-prev {
-  color: #f5b744;
+  color: #fff;
 }
 
 /* .swiper-button-next:hover,
@@ -399,7 +402,7 @@ h1 {
 }
 
 .swiper-pagination-bullet-active {
-  background-color: #f5b744;
+  background-color: #fff;
   opacity: 1;
 }
 

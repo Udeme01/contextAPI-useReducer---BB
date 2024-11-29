@@ -40,7 +40,7 @@ export default function Cart() {
                 </div>
                 {/* quantity */}
                 <section className="flex items-end justify-between">
-                  <section className="mt-4 border border-[#735932] w-fit">
+                  <section className="mt-4 border border-[#464444] w-fit">
                     <div className="flex items-center justify-around w-40 relative p-4">
                       <button
                         className="absolute left-0 right-28"

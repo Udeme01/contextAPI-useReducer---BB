@@ -22,3 +22,15 @@ const Input = forwardRef(({ clearInput, ...props }, ref) => {
 });
 
 export default Input;
+
+export const CheckoutInput = ({ label, errors, ...props }) => {
+  const inputStyles = `bg-transparent rounded-md p-4 outline-none outline-[#464444] focus:outline-4`;
+  const labelStyles = `text-lg tracking-wide text-[#464444] flex flex-col gap-2 my-6`;
+  return (
+    <label className={labelStyles}>
+      {label}
+      <input {...props} className={inputStyles} />
+      {errors && errors}
+    </label>
+  );
+};

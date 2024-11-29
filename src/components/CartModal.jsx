@@ -17,7 +17,7 @@ const CartModal = forwardRef(function Modal({ title, actions }, ref) {
     <dialog
       id="modal"
       ref={dialog}
-      className="w-full max-w-md p-6 bg-[#d3b17b] shadow-xl"
+      className="w-full max-w-md p-6 bg-[#fff] shadow-xl"
     >
       <h2>{title}</h2>
       <Cart />

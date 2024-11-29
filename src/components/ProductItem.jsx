@@ -126,19 +126,23 @@ const ProductItem = ({ product }) => {
             <h2 className="capitalize tracking-widest mt-4">
               Color: {selectedColor}
             </h2>
-            <div className="flex gap-4">
+            <div className="flex gap-2">
               {/* onClick of btn, bg-color becomes the hovered color while txt-color becomes black-bg */}
 
               {colors.map((color) => {
                 return (
-                  <button
+                  <section
                     key={color}
-                    className={`border border-[#f7d9a1] p-5 rounded-full ${
-                      selectedColor === color && "border-[#be8c2d]"
+                    className={`border rounded-full p-px ${
+                      selectedColor === color && "border-[#000]"
                     }`}
-                    style={{ backgroundColor: color }}
-                    onClick={() => setSelectedColor(color)}
-                  />
+                  >
+                    <button
+                      className={`border p-6 rounded-full `}
+                      style={{ backgroundColor: color }}
+                      onClick={() => setSelectedColor(color)}
+                    />
+                  </section>
                 );
               })}
             </div>
@@ -155,7 +159,9 @@ const ProductItem = ({ product }) => {
                 return (
                   <button
                     key={index}
-                    className="border border-[#f7d9a1] p-2 m-1 ml-0 rounded-md bg-[#000] text-[#edbf68] text-sm font-medium hover:border-[#be8c2d]"
+                    className={`${
+                      selectedSize === size && "bg-[#000] text-[#fff]"
+                    } border border-[#464444c4] px-4 py-3 m-3 ml-0 rounded-full text-[#464444] text-sm font-medium hover:border-[#000]`}
                     onClick={() => setSelectedSize(size)}
                   >
                     {size}
@@ -168,7 +174,7 @@ const ProductItem = ({ product }) => {
           {/* Quantity */}
           <section>
             <h2 className="capitalize tracking-widest mt-4">Quantity</h2>
-            <div className="border flex items-center justify-around w-40 relative p-2">
+            <div className="border border-[#464444] flex items-center justify-around w-40 relative p-2">
               <button
                 className="absolute left-0 right-28"
                 onClick={() => handleQuantityChange(-1)}
@@ -195,7 +201,7 @@ const ProductItem = ({ product }) => {
               //     ? "bg-[#f7d9a1] cursor-not-allowed"
               //     : "bg-[#f4b115] hover:bg-[#f5b744] cursor-pointer"
               // }`}
-              className="text-[#edbf68] border border-[#f7d9a1] tracking-widest cursor-pointer w-full"
+              className="border border-[#464444] text-[#464444] tracking-widest cursor-pointer w-full p-2"
             >
               Add to cart
             </button>
