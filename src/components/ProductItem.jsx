@@ -64,23 +64,21 @@ const ProductItem = ({ product }) => {
   return (
     <>
       <CartModal ref={cartModalRef} title="Your Cart" actions={modalActions} />
-      <section className="w-[85%] mx-auto text-center borde rounded-lg h-full">
-        <div className="mx-auto">
+      <section className="w-[85%] mx-auto text-center rounded-lg h-full md:flex md:gap-10 xl:max-w-7xl xl:mx-auto">
+        <div className="sticky top-0 h-[100vh] overflow-hidden mx-auto flex-1 w-full md:w-1/2 lg:w-1/3">
           <Swiper
             modules={[Navigation, Pagination]}
             navigation
             pagination={{ clickable: true }}
             spaceBetween={30}
             slidesPerView={1}
-            // onSlideChange={() => console.log("slide change")}
-            // onSwiper={(swiper) => console.log(swiper)}
           >
             <SwiperSlide>
               swiper 1
               <img
                 src={image}
                 alt={title}
-                className="rounded-lg w-full mx-auto"
+                className="rounded-lg w-full mx-auto object-contain"
               />
             </SwiperSlide>
             <SwiperSlide>
@@ -88,7 +86,7 @@ const ProductItem = ({ product }) => {
               <img
                 src={image}
                 alt={title}
-                className="rounded-lg w-full mx-auto"
+                className="rounded-lg w-full mx-auto object-contain"
               />
             </SwiperSlide>
             <SwiperSlide>
@@ -96,7 +94,7 @@ const ProductItem = ({ product }) => {
               <img
                 src={image}
                 alt={title}
-                className="rounded-lg w-full mx-auto"
+                className="rounded-lg w-full mx-auto object-contain"
               />
             </SwiperSlide>
             <SwiperSlide>
@@ -104,12 +102,13 @@ const ProductItem = ({ product }) => {
               <img
                 src={image}
                 alt={title}
-                className="rounded-lg w-full mx-auto"
+                className="rounded-lg w-full mx-auto object-contain"
               />
             </SwiperSlide>
           </Swiper>
         </div>
-        <div className="text-left leading-10 my-8">
+
+        <div className="text-left leading-10 my-8 flex-1 w-full md:w-1/2 lg:w-1/3 overflow-y-auto">
           <h2 className="uppercase tracking-widest leading-8">Fit-In</h2>
           <h1 className="text-left capitalize">{title}</h1>
 

@@ -5,9 +5,9 @@ import { CheckoutInput } from "../inputs/Input";
 
 const CheckoutForm = () => {
   const { items } = useContext(CartContext);
-  const inputContainer = `my-8 flex flex-col gap-1`;
-  const inputStyles = `bg-transparent border-none outline-[#464444] rounded-md p-4 outline-none focus:outline-[#fff]`;
-  const labelStyles = `text-lg tracking-wide text-[#000] flex flex-col gap-2 my-6`;
+  const inputContainer = `flex flex-col md:w-1/2 md:sticky md:top-0 md:h-[100vh]`;
+  // const inputStyles = `bg-transparent border-none outline-[#464444] rounded-md p-4 outline-none focus:outline-[#fff]`;
+  // const labelStyles = `text-lg tracking-wide text-[#000] flex flex-col gap-2 my-6`;
 
   const subtotalPrice = items.reduce(
     (acc, item) => acc + item.price * item.quantity,
@@ -31,14 +31,18 @@ const CheckoutForm = () => {
           selectedSize,
         } = item;
         const productPrice = quantity * price;
-        return `${index + 1}. 
-          *Product Name:* ${name}
-          *Product Size:* ${selectedSize}
-          *Product Color:* ${selectedColor}
-          *Quantity:* ${quantity}
-          *Product Price:* ${productPrice}
-          *Product Link:* Link: https://fitin-nine.vercel.app/${id}
+        return `${
+          index + 1
+        }. productName: ${name} size: ${selectedSize} color: ${selectedColor} quantity: ${quantity} price: ${productPrice}
         `;
+        // return `${index + 1}.
+        //   *Product Name:* ${name}
+        //   *Product Size:* ${selectedSize}
+        //   *Product Color:* ${selectedColor}
+        //   *Quantity:* ${quantity}
+        //   *Product Price:* ${productPrice}
+        //   *Product Link:* Link: https://fitin-nine.vercel.app/${id}
+        // `;
       })
       .join("\n");
 
@@ -135,7 +139,10 @@ ${productList}
         handleSubmit,
         isSubmitting,
       }) => (
-        <form onSubmit={handleSubmit} className="m-8">
+        <form
+          onSubmit={handleSubmit}
+          className="w-[85%] mx-auto m-8 md:flex md:gap-10 xl:max-w-7xl xl:mx-auto"
+        >
           <section className={inputContainer}>
             <CheckoutInput
               label="First Name"
@@ -182,9 +189,15 @@ ${productList}
               onBlur={handleBlur}
               errors={errors.phone && touched.phone && errors.phone}
             />
-            <input type="tel" />
+            <button
+              type="submit"
+              className="hidden text-center md:flex items-center justify-center w-full border bg-[#464444] text-[#fff] p-4 mt-8 font-medium text-xl tracking-widest capitalize rounded-md hover:bg-[#2c2c2c]"
+            >
+              proceed
+            </button>
           </section>
-          <section>
+
+          <section className="md:w-1/2">
             <button
               type="button"
               onClick={() => null}
@@ -254,7 +267,7 @@ ${productList}
 
           <button
             type="submit"
-            className="text-center flex items-center justify-center w-full border border-[#464444] p-4 mt-16 font-medium text-xl tracking-widest capitalize rounded-md hover:border-2"
+            className="text-center flex items-center justify-center w-full border bg-[#464444] text-[#fff] p-4 mt-16 font-medium text-xl tracking-widest capitalize rounded-md hover:bg-[#2c2c2c] md:hidden"
           >
             proceed
           </button>
