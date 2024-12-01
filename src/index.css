@@ -59,7 +59,6 @@ h1 {
   font-size: 1.35rem;
   cursor: pointer;
   position: relative;
-  border: 2px solid red;
 }
 
 #main-header button span {

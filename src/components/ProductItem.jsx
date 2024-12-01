@@ -81,7 +81,7 @@ const ProductItem = ({ product }) => {
                 className="rounded-lg w-full mx-auto object-contain"
               />
             </SwiperSlide>
-            {/* <SwiperSlide>
+            <SwiperSlide>
               swiper 2{" "}
               <img
                 src={image}
@@ -104,7 +104,7 @@ const ProductItem = ({ product }) => {
                 alt={title}
                 className="rounded-lg w-full mx-auto object-contain"
               />
-            </SwiperSlide> */}
+            </SwiperSlide>
           </Swiper>
         </div>
 
