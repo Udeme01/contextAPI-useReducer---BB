@@ -65,7 +65,7 @@ const ProductItem = ({ product }) => {
     <>
       <CartModal ref={cartModalRef} title="Your Cart" actions={modalActions} />
       <section className="w-[85%] mx-auto text-center rounded-lg h-full md:flex md:gap-10 xl:max-w-7xl xl:mx-auto">
-        <div className="sticky top-0 h-[100vh] overflow-hidden mx-auto flex-1 w-full md:w-1/2 lg:w-1/3">
+        <div className="mx-auto flex-1 w-full md:w-1/2 lg:w-1/3 md:sticky md:top-0 md:h-[100vh] md:overflow-hidden">
           <Swiper
             modules={[Navigation, Pagination]}
             navigation
@@ -81,7 +81,7 @@ const ProductItem = ({ product }) => {
                 className="rounded-lg w-full mx-auto object-contain"
               />
             </SwiperSlide>
-            <SwiperSlide>
+            {/* <SwiperSlide>
               swiper 2{" "}
               <img
                 src={image}
@@ -104,7 +104,7 @@ const ProductItem = ({ product }) => {
                 alt={title}
                 className="rounded-lg w-full mx-auto object-contain"
               />
-            </SwiperSlide>
+            </SwiperSlide> */}
           </Swiper>
         </div>
 
