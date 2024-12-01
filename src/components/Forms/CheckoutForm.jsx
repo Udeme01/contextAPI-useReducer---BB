@@ -31,18 +31,18 @@ const CheckoutForm = () => {
           selectedSize,
         } = item;
         const productPrice = quantity * price;
-        return `${
-          index + 1
-        }. productName: ${name} size: ${selectedSize} color: ${selectedColor} quantity: ${quantity} price: ${productPrice}
-        `;
-        // return `${index + 1}.
-        //   *Product Name:* ${name}
-        //   *Product Size:* ${selectedSize}
-        //   *Product Color:* ${selectedColor}
-        //   *Quantity:* ${quantity}
-        //   *Product Price:* ${productPrice}
-        //   *Product Link:* Link: https://fitin-nine.vercel.app/${id}
+        // return `${
+        //   index + 1
+        // }. productName: ${name} size: ${selectedSize} color: ${selectedColor} quantity: ${quantity} price: ${productPrice}
         // `;
+        return `${index + 1}.
+          *Product Name:* ${name}
+          *Product Size:* ${selectedSize}
+          *Product Color:* ${selectedColor}
+          *Quantity:* ${quantity}
+          *Product Price:* ${productPrice}
+          *Product Link:* Link: https://fitin-nine.vercel.app/${id}
+        `;
       })
       .join("\n");
 
