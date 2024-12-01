@@ -117,8 +117,8 @@ export default function Header() {
             </p> */}
           <p>
             <button onClick={handleOpenCartClick}>
-              <FontAwesomeIcon icon={faBagShopping} size="lg" />
-              <span>{cartQuantity}</span>
+              <FontAwesomeIcon icon={faBagShopping} title="cart" size="lg" />
+              <span title="cart quantity">{cartQuantity}</span>
             </button>
           </p>
         </>
@@ -130,9 +130,24 @@ export default function Header() {
           Every fit-in creation is a labor of love, crafting confidence-boosting
           attire for him and her.
         </p>
-        <h2>
-          <FontAwesomeIcon icon={faInstagram} />
-          <FontAwesomeIcon icon={faWhatsapp} />
+        <h2 className="flex items-center justify-center gap-2">
+          <Link
+            to="https://www.instagram.com/fitin_mycloset/profilecard/?igsh=a3c4dG1rbXM1NzR2"
+            target="_blank"
+          >
+            <FontAwesomeIcon
+              title="instagram"
+              icon={faInstagram}
+              className="bg-[#00000015] rounded-full p-3 hover:bg-[#0000000a]"
+            />
+          </Link>
+          <Link to="https://wa.me/message/2WFNIBDVGAFMP1" target="_blank">
+            <FontAwesomeIcon
+              title="whatsapp"
+              icon={faWhatsapp}
+              className="bg-[#00000015] rounded-full p-3 hover:bg-[#0000000a]"
+            />
+          </Link>
         </h2>
       </main>
     </>

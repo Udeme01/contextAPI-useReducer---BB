@@ -2,6 +2,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -82,7 +83,7 @@ const Footer = () => {
             &copy; 2024, Fit-In. All rights reserved.
           </p>
           <p className="text-center text-2xl text-white flex gap-4 items-center justify-center">
-            <FontAwesomeIcon
+            {/* <FontAwesomeIcon
               icon={faInstagram}
               className="p-1 rounded-md cursor-pointer"
               title="instagram"
@@ -91,7 +92,24 @@ const Footer = () => {
               icon={faWhatsapp}
               className="p-1 rounded-md cursor-pointer"
               title="whatsapp"
-            />
+            /> */}
+            <Link
+              to="https://www.instagram.com/fitin_mycloset/profilecard/?igsh=a3c4dG1rbXM1NzR2"
+              target="_blank"
+            >
+              <FontAwesomeIcon
+                title="instagram"
+                icon={faInstagram}
+                className="bg-[#00000015] rounded-full p-3 hover:bg-[#0000000a]"
+              />
+            </Link>
+            <Link to="https://wa.me/message/2WFNIBDVGAFMP1" target="_blank">
+              <FontAwesomeIcon
+                title="whatsapp"
+                icon={faWhatsapp}
+                className="bg-[#00000015] rounded-full p-3 hover:bg-[#0000000a]"
+              />
+            </Link>
           </p>
         </section>
       </section>
