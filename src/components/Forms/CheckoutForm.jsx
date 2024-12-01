@@ -15,7 +15,7 @@ const CheckoutForm = () => {
   );
   const formattedTotalPrice = `$${subtotalPrice.toFixed(2)}`;
 
-  const businessWhatsAppNumber = "+2347046780531";
+  const businessWhatsAppNumber = "+2348072924725";
 
   const handleProceed = (values) => {
     // Generate WhatsApp message
