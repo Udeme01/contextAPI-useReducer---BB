@@ -9,6 +9,7 @@ export const CartContext = createContext({
   updateCartItemQuantity: () => {},
   searchItem: () => {},
   clearItem: () => {},
+  clearAllItems: () => {},
   message: "",
 });
 
@@ -119,6 +120,14 @@ const shoppingCartReducer = (state, action) => {
     };
   }
 
+  if (action.type === "CLEAR_ALL_ITEMS") {
+    localStorage.removeItem("cartItems");
+    return {
+      ...state,
+      items: [],
+    };
+  }
+
   if (action.type === "SEARCH_ITEM") {
     if (action.payload.trim() === "") {
       return {
@@ -226,6 +235,12 @@ export default function CartContextProvider({ children }) {
     });
   }
 
+  function handleClearAllItems() {
+    shoppingCartDispatch({
+      type: "CLEAR_ALL_ITEMS",
+    });
+  }
+
   const ctxValue = {
     items: shoppingCartState.items,
     products: shoppingCartState.products,
@@ -235,6 +250,7 @@ export default function CartContextProvider({ children }) {
     updateCartItemQuantity: handleUpdateCartItemQuantity,
     searchItem: handleSearchItem,
     clearItem: handleClearItem,
+    clearAllItems: handleClearAllItems,
   };
 
   return (
