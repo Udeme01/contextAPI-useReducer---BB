@@ -11,7 +11,7 @@ import Input from "./inputs/Input.jsx";
 import Checkout from "./Buttons/Checkout.jsx";
 import Close from "./Buttons/Close.jsx";
 import { Link } from "react-router-dom";
-import logo from "/logo.png";
+import logo from "/logoPik.jpg";
 
 export default function Header() {
   const [query, setQuery] = useState("");
@@ -106,7 +106,11 @@ export default function Header() {
         ) : ( */}
         <>
           <Link to={`/`} id="main-title">
-            <img src={logo} alt="Elegant model" />
+            <img
+              src={logo}
+              alt="Elegant model"
+              className="rounded-full h-20 object-cover border-4 border-[#464444]"
+            />
             <h1 className="hidden md:block">fit-in</h1>
           </Link>
           {/* work on search feature later... */}
