@@ -202,12 +202,6 @@ h1 {
   justify-content: space-between;
 }
 
-.product-content h3 {
-  font-size: 1.25rem;
-  color: #fff;
-  margin-bottom: 0.15rem;
-}
-
 .product:hover .product-content h3 {
   text-decoration: underline;
 }
@@ -388,7 +382,20 @@ h1 {
 /* Navigation styles */
 .swiper-button-next,
 .swiper-button-prev {
-  color: #fff;
+  color: #ff0080;
+  font-weight: 600;
+
+  top: 50%;
+  transform: translateY(-50%);
+  margin-top: 0;
+}
+
+.swiper-button-next {
+  right: 0%; 
+}
+
+.swiper-button-prev {
+  left: 0%;
 }
 
 /* .swiper-button-next:hover,

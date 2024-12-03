@@ -7,7 +7,6 @@ export const fetchAllEntries = async () => {
   );
 
   const data = await response.json();
-  // console.log(data);
 
   // Map the assets from `includes.Asset`
   const assets = data.includes?.Asset || [];
@@ -36,7 +35,6 @@ export const fetchEntry = async (entryId) => {
   );
 
   const data = await response.json();
-  // console.log(data);
 
   let imageUrl = "";
   if (data.fields.fitinImage?.sys?.id) {
@@ -48,15 +46,49 @@ export const fetchEntry = async (entryId) => {
 
     if (assetResponse.ok) {
       const assetData = await assetResponse.json();
+      // console.log(assetData);
       imageUrl = assetData.fields.file.url || "";
     }
   }
+
+  // Resolve the gallery image URLs
+  let galleryImageUrls = [];
+  if (data.fields.galleryImages) {
+    // Extract asset IDs
+    const galleryImageIds = data.fields.galleryImages.map(
+      (image) => image.sys.id
+    );
+
+    // Fetch each asset for gallery images
+    const fetchGalleryAssets = galleryImageIds.map((id) =>
+      fetch(
+        `${apiConfig.baseUrl}${apiConfig.endpoints.assets}/${id}?access_token=${apiConfig.accessToken}`
+      )
+    );
+
+    // Resolve all promises
+    const galleryResponses = await Promise.all(fetchGalleryAssets);
+
+    // Process each response
+    galleryImageUrls = await Promise.all(
+      galleryResponses.map(async (response) => {
+        if (response.ok) {
+          const assetData = await response.json();
+          return assetData.fields.file.url || ""; // Extract the URL or default to an empty string
+        }
+        return ""; // Default to empty string if the fetch fails
+      })
+    );
+  }
+
+  // console.log(galleryImageUrls);
 
   return {
     id: data.sys.id,
     title: data.fields.fitinTitle || "Untitled",
     description: data.fields.fitinDescription || "",
     image: imageUrl,
+    galleryImages: galleryImageUrls,
     price: data.fields.fitinPrice || 0,
     colors: data.fields.colors || "",
     sizes: data.fields.sizes || "",

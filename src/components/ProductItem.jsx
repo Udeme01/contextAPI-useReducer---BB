@@ -17,7 +17,8 @@ import Checkout from "./Buttons/Checkout";
 import ContinueShopping from "./Buttons/ContinueShopping";
 
 const ProductItem = ({ product }) => {
-  const { id, description, image, title, price, colors, sizes } = product;
+  const { id, description, image, galleryImages, title, price, colors, sizes } =
+    product;
 
   //   initials
   const initialColor = colors[0];
@@ -27,8 +28,6 @@ const ProductItem = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
   const [selectedColor, setSelectedColor] = useState(initialColor);
   const [selectedSize, setSelectedSize] = useState(initialSize);
-
-  // console.log(selectedColor);
 
   //   ref
   const cartModalRef = useRef();
@@ -69,42 +68,23 @@ const ProductItem = ({ product }) => {
           <Swiper
             modules={[Navigation, Pagination]}
             navigation
-            pagination={{ clickable: true }}
-            spaceBetween={30}
+            // pagination={{ clickable: true }}
+            // spaceBetween={0}
             slidesPerView={1}
           >
-            <SwiperSlide>
-              swiper 1
-              <img
-                src={image}
-                alt={title}
-                className="rounded-lg w-full mx-auto object-contain"
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              swiper 2{" "}
-              <img
-                src={image}
-                alt={title}
-                className="rounded-lg w-full mx-auto object-contain"
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              swiper 3{" "}
-              <img
-                src={image}
-                alt={title}
-                className="rounded-lg w-full mx-auto object-contain"
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              swiper 4{" "}
-              <img
-                src={image}
-                alt={title}
-                className="rounded-lg w-full mx-auto object-contain"
-              />
-            </SwiperSlide>
+            {galleryImages?.map((galleryImage) => {
+              return (
+                <SwiperSlide key={galleryImage}>
+                  <div className="rounded-lg w-fit h-fit mx-auto">
+                    <img
+                      src={galleryImage}
+                      alt={title}
+                      className="mx-auto w-full h-[50vh] object-contain rounded-lg"
+                    />
+                  </div>
+                </SwiperSlide>
+              );
+            })}
           </Swiper>
         </div>
 
