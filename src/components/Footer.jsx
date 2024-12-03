@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="mt-16 bg-[#464444] text-[#fff]">
+    <footer className="mt-16 bg-[#464444] text-[#fff] bg-opacity-90">
       <section className="flex flex-col py-8 w-[85%] mx-auto xl:max-w-7xl xl:mx-auto">
         <h1 className="text-[#fff]">fit-in</h1>
         <section className="grid sm:grid-cols-2">

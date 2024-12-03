@@ -71,7 +71,7 @@ export default function Header() {
   return (
     <>
       <CartModal ref={modal} title="Your Cart" actions={modalActions} />
-      <header className="bg-[#464444] sticky top-0 z-50">
+      <header className="bg-[#464444] sticky top-0 z-50 backdrop-blur-md bg-opacity-50 shadow-md">
         <section
           id="main-header"
           className="flex items-center justify-between w-[85%] mx-auto xl:max-w-7xl xl:mx-auto"
@@ -112,7 +112,7 @@ export default function Header() {
                 alt="Elegant model"
                 className="rounded-full h-20 object-cover border-4 border-[#fff]"
               />
-              <h1 className="hidden md:block">fit-in</h1>
+              <h1 className="hidden md:block text-[#fff]">fit-in</h1>
             </Link>
             {/* work on search feature later... */}
             {/* <p>
