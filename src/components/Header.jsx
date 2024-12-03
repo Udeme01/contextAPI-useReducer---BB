@@ -71,7 +71,7 @@ export default function Header() {
   return (
     <>
       <CartModal ref={modal} title="Your Cart" actions={modalActions} />
-      <header className="bg-[#464444] sticky top-0 z-50 backdrop-blur-md bg-opacity-50 shadow-md">
+      <header className="bg-[#46444413] sticky top-0 z-50 backdrop-blur-md bg-opacity-50 shadow-md">
         <section
           id="main-header"
           className="flex items-center justify-between w-[85%] mx-auto xl:max-w-7xl xl:mx-auto"
