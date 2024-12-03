@@ -71,11 +71,12 @@ export default function Header() {
   return (
     <>
       <CartModal ref={modal} title="Your Cart" actions={modalActions} />
-      <header
-        id="main-header"
-        className="flex items-center justify-between w-[85%] mx-auto xl:max-w-7xl xl:mx-auto"
-      >
-        {/* {showInput ? (
+      <header className="bg-[#464444] sticky top-0 z-50">
+        <section
+          id="main-header"
+          className="flex items-center justify-between w-[85%] mx-auto xl:max-w-7xl xl:mx-auto"
+        >
+          {/* {showInput ? (
           <span className="searchWrapper">
             <Input
               ref={inputRef}
@@ -104,29 +105,30 @@ export default function Header() {
             </button>
           </span>
         ) : ( */}
-        <>
-          <Link to={`/`} id="main-title">
-            <img
-              src={logo}
-              alt="Elegant model"
-              className="rounded-full h-20 object-cover border-4 border-[#464444]"
-            />
-            <h1 className="hidden md:block">fit-in</h1>
-          </Link>
-          {/* work on search feature later... */}
-          {/* <p>
+          <>
+            <Link to={`/`} id="main-title">
+              <img
+                src={logo}
+                alt="Elegant model"
+                className="rounded-full h-20 object-cover border-4 border-[#fff]"
+              />
+              <h1 className="hidden md:block">fit-in</h1>
+            </Link>
+            {/* work on search feature later... */}
+            {/* <p>
               <button onClick={handleShowInput}>
                 <FontAwesomeIcon icon={faMagnifyingGlass} size="lg" />
               </button>
             </p> */}
-          <p>
-            <button onClick={handleOpenCartClick}>
-              <FontAwesomeIcon icon={faBagShopping} title="cart" size="lg" />
-              <span title="cart quantity">{cartQuantity}</span>
-            </button>
-          </p>
-        </>
-        {/* // )}  */}
+            <p>
+              <button onClick={handleOpenCartClick}>
+                <FontAwesomeIcon icon={faBagShopping} title="cart" size="lg" />
+                <span title="cart quantity">{cartQuantity}</span>
+              </button>
+            </p>
+          </>
+          {/* // )}  */}
+        </section>
       </header>
       <main className="hero">
         <h1 className="md:hidden font-medium">Fit-In</h1>
