@@ -1,5 +1,3 @@
-import apiConfig from "../src/components/config/apiConfig";
-
 export default async function handler(req, res) {
   try {
     const {
