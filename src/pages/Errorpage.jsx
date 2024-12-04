@@ -39,5 +39,3 @@ const Errorpage = () => {
 };
 
 export default Errorpage;
-
-// check status for 'Network Error' message && others too.

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { CartContext } from "../store/shopping-cart-context";
 import { Formik } from "formik";
 import { CheckoutInput } from "../inputs/Input";
