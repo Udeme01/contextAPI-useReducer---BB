@@ -53,10 +53,7 @@ export const loader = async () => {
   const entries = await fetchAllEntries();
 
   if (!entries) {
-    throw new Response(
-      JSON.stringify({ message: "Failed to fetch product items" }),
-      { status: 500 }
-    );
+    throw new Response(null, { status: 404 });
     // throw json({ message: "Failed to fetch product items" }, { status: 500 });
   } else {
     return entries;

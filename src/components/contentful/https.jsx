@@ -7,7 +7,7 @@ export const fetchAllEntries = async () => {
   );
 
   if (!response.ok) {
-    throw new Error(`HTTP ${response.status} - ${response.statusText}`);
+    return;
   }
 
   const data = await response.json();
@@ -39,8 +39,8 @@ export const fetchEntry = async (entryId) => {
   );
 
   if (!response.ok) {
-    // console.error(`Error fetching entry: ${response.status} ${response.statusText}`);
-    throw new Error(`HTTP ${response.status} - ${response.statusText}`);
+    return;
+    // throw new Error(`HTTP ${response.status} - ${response.statusText}`);
   }
 
   const data = await response.json();
