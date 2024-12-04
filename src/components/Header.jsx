@@ -1,20 +1,21 @@
-import { useRef, useContext, useState } from "react";
+import { useRef, useContext, useState, useEffect } from "react";
 import CartModal from "./CartModal.jsx";
 import { CartContext } from "./store/shopping-cart-context.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBagShopping,
-  faMagnifyingGlass,
+  // faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
 import { faInstagram, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
-import Input from "./inputs/Input.jsx";
+// import Input from "./inputs/Input.jsx";
 import Checkout from "./Buttons/Checkout.jsx";
 import Close from "./Buttons/Close.jsx";
 import { Link } from "react-router-dom";
 import logo from "/logoPik.jpg";
+import { HeaderContext } from "./store/HeaderContext.jsx";
 
 export default function Header() {
-  const [query, setQuery] = useState("");
+  // const [query, setQuery] = useState("");
   // const [showInput, setShowInput] = useState(false);
 
   // const handleShowInput = () => {
@@ -29,7 +30,7 @@ export default function Header() {
 
   const { items, searchItem } = useContext(CartContext);
   const modal = useRef();
-  const inputRef = useRef();
+  // const inputRef = useRef();
 
   const cartQuantity = items.length; // displays the number of items(quantity) of/that's (in) the cart
 
@@ -37,26 +38,25 @@ export default function Header() {
     modal.current.open();
   }
 
-  function handleClearInput() {
-    setQuery("");
-    inputRef.current?.focus();
-    searchItem("");
-  }
+  // function handleClearInput() {
+  //   setQuery("");
+  //   inputRef.current?.focus();
+  //   searchItem("");
+  // }
 
   // Function to handle the search action
-  const handleSearch = () => {
-    if (query.trim() !== "") {
-      searchItem(query);
-    }
-    // console.log(query);
-  };
+  // const handleSearch = () => {
+  //   if (query.trim() !== "") {
+  //     searchItem(query);
+  //   }
+  // };
 
   // Handle Enter key press for search
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
-      handleSearch();
-    }
-  };
+  // const handleKeyDown = (e) => {
+  //   if (e.key === "Enter") {
+  //     handleSearch();
+  //   }
+  // };
 
   let modalActions = <Close />;
 
@@ -68,10 +68,16 @@ export default function Header() {
       </>
     );
   }
+
+  const { headerRef } = useContext(HeaderContext);
+
   return (
     <>
       <CartModal ref={modal} title="Your Cart" actions={modalActions} />
-      <header className="bg-[#46444413] sticky top-0 z-50 backdrop-blur-md bg-opacity-50 shadow-md">
+      <header
+        ref={headerRef}
+        className="bg-[#46444413] sticky top-0 z-50 backdrop-blur-md bg-opacity-50 shadow-md"
+      >
         <section
           id="main-header"
           className="flex items-center justify-between w-[85%] mx-auto xl:max-w-7xl xl:mx-auto"

@@ -6,6 +6,10 @@ export const fetchAllEntries = async () => {
     `${apiConfig.baseUrl}${apiConfig.endpoints.entries}?access_token=${apiConfig.accessToken}&content_type=fitin&include=2`
   );
 
+  if (!response.ok) {
+    throw new Error(`HTTP ${response.status} - ${response.statusText}`);
+  }
+
   const data = await response.json();
 
   // Map the assets from `includes.Asset`
@@ -33,6 +37,11 @@ export const fetchEntry = async (entryId) => {
   const response = await fetch(
     `${apiConfig.baseUrl}${apiConfig.endpoints.entries}/${entryId}?access_token=${apiConfig.accessToken}&content_type=fitin`
   );
+
+  if (!response.ok) {
+    // console.error(`Error fetching entry: ${response.status} ${response.statusText}`);
+    throw new Error(`HTTP ${response.status} - ${response.statusText}`);
+  }
 
   const data = await response.json();
 

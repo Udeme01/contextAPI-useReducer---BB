@@ -2,10 +2,15 @@ import React, { useContext, useState } from "react";
 import { CartContext } from "../store/shopping-cart-context";
 import { Formik } from "formik";
 import { CheckoutInput } from "../inputs/Input";
+import { HeaderContext } from "../store/HeaderContext";
 
 const CheckoutForm = () => {
+  // context
   const { items, clearAllItems } = useContext(CartContext);
-  const inputContainer = `flex flex-col md:w-1/2 md:sticky md:top-0 md:h-[100vh]`;
+  const { headerHeight, isMediumScreen } = useContext(HeaderContext);
+
+  // input styles
+  const inputContainer = `flex flex-col md:w-1/2 md:sticky`;
 
   const subtotalPrice = items.reduce(
     (acc, item) => acc + item.price * item.quantity,
@@ -176,7 +181,17 @@ const CheckoutForm = () => {
             onSubmit={handleSubmit}
             className="w-[85%] mx-auto m-8 md:flex md:gap-10 xl:max-w-7xl xl:mx-auto"
           >
-            <section className={inputContainer}>
+            <section
+              className={inputContainer}
+              style={
+                isMediumScreen
+                  ? {
+                      top: `${headerHeight}px`,
+                      height: `calc(100vh - ${headerHeight}px)`,
+                    }
+                  : {}
+              }
+            >
               <CheckoutInput
                 label="First Name"
                 type="firstname"

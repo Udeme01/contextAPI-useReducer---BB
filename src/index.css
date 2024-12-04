@@ -64,14 +64,12 @@ h1 {
 
 #main-header button span {
   position: absolute;
-  /* right: 0%; */
   top: 0%;
   transform: translate(-50%, -50%);
-  background-color: #464444;
-  color: #fff;
+  color: #464444;
   border-radius: 12px;
   font-size: 1.2rem;
-  font-weight: medium;
+  font-weight: 700;
   padding: 0.15rem;
 }
 
@@ -392,7 +390,7 @@ h1 {
 }
 
 .swiper-button-next {
-  right: 0%; 
+  right: 0%;
 }
 
 .swiper-button-prev {

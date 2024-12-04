@@ -9,7 +9,6 @@ const Errorpage = () => {
 
   let title = "An error occured";
   let message = "Network Error";
-  let statusText = "";
 
   if (error.status === 500) {
     message = JSON.parse(error.data).message;
@@ -20,9 +19,13 @@ const Errorpage = () => {
     message = "Could not find resource or page";
   }
 
+  if (error.status === 401) {
+    message = JSON.parse(error.data).message;
+  }
+
   return (
     <>
-    <Header />
+      <Header />
       <section className="flex flex-col items-center justify-center min-h-screen text-center p-6">
         <h1 className="capitalize">{title}</h1>
         <p>

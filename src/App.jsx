@@ -9,6 +9,8 @@ import Shop, { loader as productsLoader } from "./components/Shop.jsx";
 import ProductRoot from "./pages/ProductRoot.jsx";
 import CheckoutForm from "./components/Forms/CheckoutForm.jsx";
 
+import { HeaderProvider } from "./components/store/HeaderContext.jsx";
+
 function App() {
   const router = createBrowserRouter([
     {
@@ -53,12 +55,14 @@ function App() {
 
   return (
     <CartContextProvider>
-      <RouterProvider
-        router={router}
-        future={{
-          v7_startTransition: true,
-        }}
-      />
+      <HeaderProvider>
+        <RouterProvider
+          router={router}
+          future={{
+            v7_startTransition: true,
+          }}
+        />
+      </HeaderProvider>
     </CartContextProvider>
   );
 }

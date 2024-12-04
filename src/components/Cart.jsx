@@ -61,7 +61,15 @@ export default function Cart() {
                       </button>
                     </div>
                   </section>
-                  <button onClick={() => clearItem(productIdSpecific)}>
+                  <button
+                    onClick={() => {
+                      {
+                        window.confirm(
+                          "You are about to remove this item from your cart. Are you sure?"
+                        ) && clearItem(productIdSpecific);
+                      }
+                    }}
+                  >
                     <FontAwesomeIcon
                       icon={faTrashCan}
                       size="2x"

@@ -18,11 +18,7 @@ export const loader = async ({ params }) => {
     const product = await fetchEntry(productId);
     return product;
   } catch (error) {
-    throw new Response(
-      JSON.stringify({
-        message: "Could not fetch details for selected product",
-      }),
-      { status: 500 }
-    );
+    console.log(error);
+    throw new Response(null, { status: 404 });
   }
 };

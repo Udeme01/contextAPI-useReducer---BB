@@ -4,6 +4,7 @@ import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { CartContext } from "./store/shopping-cart-context";
 import sizeGuideImg from "../assets/sizeGuide.jpg";
 import CartModal from "./CartModal";
+import { HeaderContext } from "./store/HeaderContext";
 
 // SWIPER JS
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -34,6 +35,7 @@ const ProductItem = ({ product }) => {
 
   //    context
   const { addItemToCart, items } = useContext(CartContext);
+  const { headerHeight, isMediumScreen } = useContext(HeaderContext);
 
   const handleQuantityChange = (amount) => {
     setQuantity((prev) => Math.max(1, prev + amount)); // Ensure quantity doesn't drop below 1
@@ -64,7 +66,17 @@ const ProductItem = ({ product }) => {
     <>
       <CartModal ref={cartModalRef} title="Your Cart" actions={modalActions} />
       <section className="w-[85%] mx-auto text-center rounded-lg h-full md:flex md:gap-10 xl:max-w-7xl xl:mx-auto">
-        <div className="mx-auto flex-1 w-full md:w-1/2 lg:w-1/3 md:sticky md:top-0 md:h-[100vh] md:overflow-hidden">
+        <div
+          className={`mx-auto flex-1 w-full md:w-1/2 lg:w-1/3 md:sticky md:overflow-hidden`}
+          style={
+            isMediumScreen
+              ? {
+                  top: `${headerHeight}px`,
+                  height: `calc(100vh - ${headerHeight}px)`,
+                }
+              : {}
+          }
+        >
           <Swiper
             modules={[Navigation, Pagination]}
             navigation
@@ -79,7 +91,7 @@ const ProductItem = ({ product }) => {
                     <img
                       src={galleryImage}
                       alt={title}
-                      className="mx-auto w-full h-[50vh] object-contain rounded-lg"
+                      className="mx-auto w-full h-[50vh] object-contain rounded-lg mt-8"
                     />
                   </div>
                 </SwiperSlide>
@@ -88,7 +100,7 @@ const ProductItem = ({ product }) => {
           </Swiper>
         </div>
 
-        <div className="text-left leading-10 my-8 flex-1 w-full md:w-1/2 lg:w-1/3 overflow-y-auto">
+        <div className="text-left leading-10 my-6 flex-1 w-full md:w-1/2 lg:w-1/3 overflow-y-auto">
           <h2 className="uppercase tracking-widest leading-8">Fit-In</h2>
           <h1 className="text-left capitalize">{title}</h1>
 
