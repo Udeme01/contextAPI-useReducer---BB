@@ -1,12 +1,8 @@
-import apiConfig from "../config/apiConfig";
+// import apiConfig from "../config/apiConfig";
 // import handler from "../../../api/fetchContent";
 
 // fetch multiple entries
 export const fetchAllEntries = async () => {
-  // const response = await fetch(
-  //   `${apiConfig.baseUrl}${apiConfig.endpoints.entries}?access_token=${apiConfig.accessToken}&content_type=fitin&include=2`
-  // );
-
   const response = await fetch("/api/fetchContent");
   console.log(response);
 
@@ -38,9 +34,10 @@ export const fetchAllEntries = async () => {
 
 // fetch a single entry
 export const fetchEntry = async (entryId) => {
-  const response = await fetch(
-    `${apiConfig.baseUrl}${apiConfig.endpoints.entries}/${entryId}?access_token=${apiConfig.accessToken}&content_type=fitin`
-  );
+  // const response = await fetch(
+  //   `${apiConfig.baseUrl}${apiConfig.endpoints.entries}/${entryId}?access_token=${apiConfig.accessToken}&content_type=fitin`
+  // );
+  const response = await fetch(`/api/fetchSingleEntry?entryId=${entryId}`);
 
   if (!response.ok) {
     return;
