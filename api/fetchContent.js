@@ -20,6 +20,8 @@ export default async function handler(req, res) {
       `https://cdn.contentful.com/spaces/${CONTENTFUL_SPACE_ID}/environments/${CONTENTFUL_ENVIRONMENT}/entries?access_token=${CONTENTFUL_ACCESS_TOKEN}&content_type=fitin&include=2`
     );
 
+    // https://cdn.contentful.com/spaces/${spaceId}/environments/${environment}/assets/assetId?access_token=accessToken
+
     if (!response.ok) {
       return res
         .status(response.status)
