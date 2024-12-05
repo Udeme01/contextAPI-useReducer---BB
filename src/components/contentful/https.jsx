@@ -33,8 +33,8 @@ export const fetchEntry = async (entryId) => {
   const response = await fetch(`/api/fetchSingleEntry?entryId=${entryId}`);
 
   if (!response.ok) {
-    console.log("error fetching single entry");
-    return;
+    console.log("error fetching single entry", response);
+    throw new Response(null, { status: 500 });
     // throw new Error(`HTTP ${response.status} - ${response.statusText}`);
   }
 

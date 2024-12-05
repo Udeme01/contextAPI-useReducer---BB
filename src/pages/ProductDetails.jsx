@@ -18,7 +18,7 @@ export const loader = async ({ params }) => {
     const product = await fetchEntry(productId);
     return product;
   } catch (error) {
-    console.log(error);
+    console.log('error here PD',error);
     throw new Response(null, { status: 404 });
   }
 };
