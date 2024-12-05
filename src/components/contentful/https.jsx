@@ -1,9 +1,6 @@
 // fetch multiple entries
 export const fetchAllEntries = async () => {
   const response = await fetch("/api/fetchContent");
-  // const response = await fetch(
-  //   `https://cdn.contentful.com/spaces/if5o0uzuywbh/environments/master/entries?access_token=WKDh2DUCsUwONv29xdvVyM7U6eNR6KsHfdJJFcNY9eE&content_type=fitin&include=2`
-  // );
 
   if (!response.ok) {
     return;

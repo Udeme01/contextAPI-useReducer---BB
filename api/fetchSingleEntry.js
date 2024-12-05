@@ -2,7 +2,8 @@ export default async function handler(req, res) {
   const { entryId } = req.query; // Get the entry ID from the query parameter
 
   if (!entryId) {
-    return res.status(400).json({ error: "Entry ID is required" });
+    return res.status(400).end();
+    // .json({ error: "Entry ID is required" });
   }
 
   try {
@@ -18,9 +19,8 @@ export default async function handler(req, res) {
       !CONTENTFUL_ENVIRONMENT ||
       !CONTENTFUL_ACCESS_TOKEN
     ) {
-      return res
-        .status(500)
-        .json({ error: "Environment variables are missing." });
+      return res.status(500).end();
+      // .json({ error: "Environment variables are missing." });
     }
 
     // Fetch the specific entry from Contentful
@@ -29,9 +29,8 @@ export default async function handler(req, res) {
     );
 
     if (!response.ok) {
-      return res
-        .status(response.status)
-        .json({ error: "Failed to fetch the entry from Contentful" });
+      return res.status(response.status).end();
+      // .json({ error: "Failed to fetch the entry from Contentful" });
     }
 
     const data = await response.json();
