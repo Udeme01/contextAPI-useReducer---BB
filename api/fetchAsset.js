@@ -2,8 +2,9 @@ export default async function handler(req, res) {
   const { assetId } = req.query;
 
   if (!assetId) {
-    return res.status(400).end();
+    // return res.status(400).end();
     // .json({ error: "Asset ID is required" });
+    return;
   }
 
   try {
@@ -18,8 +19,9 @@ export default async function handler(req, res) {
       !CONTENTFUL_ENVIRONMENT ||
       !CONTENTFUL_ACCESS_TOKEN
     ) {
-      return res.status(500).end();
+      //   return res.status(500).end();
       // .json({ error: "Environment variables are missing" });
+      return;
     }
 
     const response = await fetch(
@@ -27,8 +29,9 @@ export default async function handler(req, res) {
     );
 
     if (!response.ok) {
-      return res.status(response.status).end();
+      //   return res.status(response.status).end();
       // .json({ error: `Failed to fetch asset: ${response.statusText}` });
+      return;
     }
 
     const data = await response.json();
