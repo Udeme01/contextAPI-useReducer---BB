@@ -137,7 +137,7 @@ export default function Header() {
         </section>
       </header>
       <main className="hero">
-        <h1 className="md:hidden font-medium">Fit-In-000</h1>
+        <h1 className="md:hidden font-medium">Fit-In</h1>
         <p className="px-4 text-[#464444]">
           Every fit-in creation is a labor of love, crafting confidence-boosting
           attire for him and her.
