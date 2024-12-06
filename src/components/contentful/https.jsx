@@ -3,7 +3,15 @@ export const fetchAllEntries = async () => {
   const response = await fetch("/api/fetchContent");
 
   if (!response.ok) {
-    return;
+    console.log("all entries", response);
+    const errorMessage =
+      response.status === 404
+        ? "No products found"
+        : "Failed to fetch product items";
+
+    throw new Response(JSON.stringify({ message: errorMessage }), {
+      status: response.status,
+    });
   }
 
   const data = await response.json();
@@ -33,9 +41,9 @@ export const fetchEntry = async (entryId) => {
   const response = await fetch(`/api/fetchSingleEntry?entryId=${entryId}`);
 
   if (!response.ok) {
-    console.log("error fetching single entry", response);
-    throw new Response(null, { status: 500 });
-    // throw new Error(`HTTP ${response.status} - ${response.statusText}`);
+    throw new Response(JSON.stringify({ message: "Product Page Not Found" }), {
+      status: response.status,
+    });
   }
 
   const data = await response.json();
@@ -80,8 +88,6 @@ export const fetchEntry = async (entryId) => {
       })
     );
   }
-
-  // console.log(galleryImageUrls);
 
   return {
     id: data.sys.id,

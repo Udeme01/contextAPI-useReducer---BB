@@ -50,22 +50,16 @@ export default function Shop() {
 }
 
 export const loader = async () => {
-  const entries = await fetchAllEntries();
-
-  if (!entries) {
-    throw new Response(null, { status: 404 });
-    // throw json({ message: "Failed to fetch product items" }, { status: 500 });
-  } else {
+  try {
+    const entries = await fetchAllEntries();
     return entries;
+  } catch (error) {
+    if (error instanceof Response) {
+      throw error;
+    }
+    throw new Response(
+      JSON.stringify({ message: "An unexpected error occurred." }),
+      { status: 500 }
+    );
   }
 };
-
-// const filteredItems = fitinItems.filter((item) =>
-//   item.title.toLowerCase().includes(query.toLowerCase())
-// );
-
-// description
-// id
-// image
-// price
-// title

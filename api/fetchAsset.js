@@ -2,9 +2,7 @@ export default async function handler(req, res) {
   const { assetId } = req.query;
 
   if (!assetId) {
-    // return res.status(400).end();
-    // .json({ error: "Asset ID is required" });
-    return;
+    return res.status(400).json({ error: "Asset ID is required" });
   }
 
   try {
@@ -19,9 +17,9 @@ export default async function handler(req, res) {
       !CONTENTFUL_ENVIRONMENT ||
       !CONTENTFUL_ACCESS_TOKEN
     ) {
-      //   return res.status(500).end();
-      // .json({ error: "Environment variables are missing" });
-      throw new Response({ status: 500 });
+      return res
+        .status(500)
+        .json({ error: "Environment variables are missing" });
     }
 
     const response = await fetch(
@@ -29,16 +27,14 @@ export default async function handler(req, res) {
     );
 
     if (!response.ok) {
-      //   return res.status(response.status).end();
-      // .json({ error: `Failed to fetch asset: ${response.statusText}` });
-      throw new Response({ status: response.status });
+      return res
+        .status(response.status)
+        .json({ error: `Failed to fetch asset: ${response.statusText}` });
     }
 
     const data = await response.json();
     res.status(200).json(data); // Send the asset data back to the frontend
   } catch (error) {
-    // console.error(error);
-    // res.status(500).json({ error: "An unexpected error occurred" });
-    throw new Response({ status: 500 });
+    res.status(500).json({ error: "An unexpected error occurred" });
   }
 }

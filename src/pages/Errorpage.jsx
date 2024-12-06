@@ -5,22 +5,30 @@ import Footer from "../components/Footer";
 
 const Errorpage = () => {
   const error = useRouteError();
-  console.log(error);
 
   let title = "An error occured";
-  let message = "Network Error";
+  let message = "Something went wrong";
 
-  if (error.status === 500) {
-    message = JSON.parse(error.data).message;
-  }
+  if (error) {
+    switch (error.status) {
+      case 500:
+        title = "Internal Server Error";
+        break;
+      case 404:
+        title = "Page Not Found";
+        break;
+      case 401:
+        title = "Unauthorized";
+        break;
+      default:
+        title = `Error ${error.status}`;
+    }
 
-  if (error.status === 404) {
-    title = "Not Found";
-    message = "Could not find resource or page";
-  }
-
-  if (error.status === 401) {
-    message = JSON.parse(error.data).message;
+    try {
+      message = JSON.parse(error.data)?.message || message;
+    } catch {
+      message = error.statusText || message;
+    }
   }
 
   return (
@@ -29,7 +37,6 @@ const Errorpage = () => {
       <section className="flex flex-col items-center justify-center min-h-screen text-center p-6">
         <h1 className="capitalize">{title}</h1>
         <p>
-          {/* <i>{error.statusText || error.message}</i> */}
           <i>{message}</i>
         </p>
       </section>

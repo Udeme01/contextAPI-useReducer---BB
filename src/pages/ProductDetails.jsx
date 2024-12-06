@@ -16,9 +16,27 @@ export const loader = async ({ params }) => {
 
   try {
     const product = await fetchEntry(productId);
+    if (!product) {
+      throw new Response(
+        JSON.stringify({
+          message: "Product Not Found",
+        }),
+        { status: 404 }
+      );
+    }
     return product;
   } catch (error) {
-    console.log('error here PD',error);
-    throw new Response(null, { status: 404 });
+    // Known error: Check if it's a 404 and rethrow it as a Response object.
+    if (error instanceof Response && error.status === 404) {
+      throw error; // This will bubble up and trigger a 404 error page.
+    }
+
+    // Unexpected error: Throw a 500 error.
+    throw new Response(
+      JSON.stringify({
+        message: "Request Failed",
+      }),
+      { status: 500 }
+    );
   }
 };
