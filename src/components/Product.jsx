@@ -15,24 +15,25 @@ export default function Product({ description, id, image, price, title }) {
   // }
 
   return (
-    <li className="product">
-      <img src={image} alt={title} />
-      <div className="product-content">
-        <div>
-          <h3 className="text-[#464444] text-2xl my-4">{title}</h3>
-          <p className="product-price m-0 text-lg text-[#464444] font-bold">
-            ${price}
-          </p>
-          <p>{description}</p>
-        </div>
-        <p className={`product-actions`}>
-          <Link
-            to={`${id}`}
-            className={`link bg-[#464444] text-[#fff] cursor-pointer w-full text-center mt-4`}
-          >
-            View Product
-          </Link>
-          {/* <button
+    <>
+      <li className="product">
+        <img src={image} alt={title} />
+        <div className="product-content">
+          <div>
+            <h3 className="text-[#464444] text-2xl my-4">{title}</h3>
+            <p className="product-price m-0 text-lg text-[#464444] font-bold">
+              ${price}
+            </p>
+            <p>{description}</p>
+          </div>
+          <p className={`product-actions`}>
+            <Link
+              to={`${id}`}
+              className={`link bg-[#464444] text-[#fff] cursor-pointer w-full text-center mt-4`}
+            >
+              View Product
+            </Link>
+            {/* <button
             onClick={() => addItemToCart(id)}
             disabled={disabled}
             className={`${
@@ -43,8 +44,9 @@ export default function Product({ description, id, image, price, title }) {
           >
             {cartBtn}
           </button> */}
-        </p>
-      </div>
-    </li>
+          </p>
+        </div>
+      </li>
+    </>
   );
 }

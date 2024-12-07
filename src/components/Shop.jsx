@@ -15,7 +15,6 @@ export default function Shop() {
     const fetchData = async () => {
       try {
         setIsFetching(true);
-        // const entries = await fetchAllEntries();
         setFitinItems(entries || []);
         setIsFetching(false);
       } catch (error) {
@@ -32,7 +31,7 @@ export default function Shop() {
   return (
     <section id="shop">
       {isFetching ? (
-        <div className="text-center text-xl">Loading product data...</div>
+        <div className="text-center text-2xl">Loading product data...</div>
       ) : filteredItems.length === 0 ? (
         <div className="text-center text-xl">No products found</div>
       ) : (
@@ -58,7 +57,9 @@ export const loader = async () => {
       throw error;
     }
     throw new Response(
-      JSON.stringify({ message: "An unexpected error occurred." }),
+      JSON.stringify({
+        message: "An unexpected error occurred. No Products Avaliable",
+      }),
       { status: 500 }
     );
   }

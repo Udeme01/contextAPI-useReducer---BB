@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Outlet, useNavigation, useLocation } from "react-router-dom";
+import Loader from "../components/Loaders/Loader";
 
 const RootLayout = () => {
-  // const navigation = useNavigation();
+  const navigation = useNavigation();
 
-  // navigation.state === "loading";
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -15,7 +15,10 @@ const RootLayout = () => {
   return (
     <>
       <Header />
-      <Outlet />
+      <main className="relative">
+        {navigation.state === "loading" && <Loader />}
+        <Outlet />
+      </main>
       <Footer />
     </>
   );
