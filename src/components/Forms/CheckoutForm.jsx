@@ -186,8 +186,8 @@ const CheckoutForm = () => {
               style={
                 isMediumScreen
                   ? {
-                      top: `${headerHeight}px`,
-                      height: `calc(100vh - ${headerHeight}px)`,
+                      top: `${headerHeight || "112"}px`,
+                      height: `calc(100vh - ${headerHeight || "112"}px)`,
                     }
                   : {}
               }

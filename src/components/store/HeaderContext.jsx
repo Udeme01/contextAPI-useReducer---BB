@@ -13,9 +13,9 @@ export const HeaderProvider = ({ children }) => {
 
   useEffect(() => {
     const updateHeaderHeight = () => {
-      if (headerRef.current) {
-        console.log(headerRef.current.offsetHeight);
-        setHeaderHeight(headerRef.current.offsetHeight);
+      if (headerRef?.current) {
+        console.log(headerRef?.current?.offsetHeight);
+        setHeaderHeight(headerRef?.current?.offsetHeight);
       }
       setIsMediumScreen(window.innerWidth >= 768); // Tailwind's `md` breakpoint
     };
