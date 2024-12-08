@@ -5,7 +5,7 @@ import { Outlet, useNavigation, useLocation } from "react-router-dom";
 import Loader from "../components/Loaders/Loader";
 
 const RootLayout = () => {
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
 
   const { pathname } = useLocation();
 
@@ -15,8 +15,8 @@ const RootLayout = () => {
   return (
     <>
       <Header />
-      <main className="relative">
-        {navigation.state === "loading" && <Loader />}
+      <main>
+        {/* {navigation.state === "loading" && <Loader />} */}
         <Outlet />
       </main>
       <Footer />
