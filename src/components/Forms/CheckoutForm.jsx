@@ -290,7 +290,7 @@ const CheckoutForm = () => {
                             alt={name}
                             className="w-32 rounded-md"
                           />
-                          <p className="absolute z-50 -top-2 -right-2 text-xl bg-[#464444] text-[#fff] text-center flex items-center justify-center rounded-full w-8 h-8 font-bold">
+                          <p className="absolute z-0 -top-2 -right-2 text-xl bg-[#464444] text-[#fff] text-center flex items-center justify-center rounded-full w-8 h-8 font-bold">
                             {quantity}
                           </p>
                         </span>
