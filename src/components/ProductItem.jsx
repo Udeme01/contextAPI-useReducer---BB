@@ -71,7 +71,7 @@ const ProductItem = ({ product }) => {
           style={
             isMediumScreen
               ? {
-                  top: `${headerHeight}px`,
+                  top: `100px`,
                   height: `calc(100vh - ${headerHeight}px)`,
                 }
               : {}
