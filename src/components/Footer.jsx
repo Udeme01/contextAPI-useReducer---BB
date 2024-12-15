@@ -68,11 +68,11 @@ const Footer = () => {
               <p className="mt-6">
                 Phone:{" "}
                 <a
-                  href="tel:+234 805 574 2292"
-                  title="tel:+234 805 574 2292"
+                  href="tel:+234 807 292 4725"
+                  title="tel:+234 807 292 4725"
                   className="underline underline-offset-4"
                 >
-                  +234 805 574 2292
+                  +234 807 292 4725
                 </a>
               </p>
             </div>
