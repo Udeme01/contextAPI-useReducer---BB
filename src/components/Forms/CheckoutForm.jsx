@@ -183,14 +183,14 @@ const CheckoutForm = () => {
           >
             <section
               className={inputContainer}
-              style={
-                isMediumScreen
-                  ? {
-                      top: `${headerHeight || "112"}px`,
-                      height: `calc(100vh + 200px)`,
-                    }
-                  : {}
-              }
+              style={{
+                top: isMediumScreen ? `${headerHeight || "112"}px` : undefined,
+                height: isMediumScreen
+                  ? `clamp(100vh, 100%, calc(100vh + ${
+                      headerHeight || "112"
+                    }px))`
+                  : undefined,
+              }}
             >
               <CheckoutInput
                 label="First Name"
