@@ -46,7 +46,7 @@ const CheckoutForm = () => {
           *Product Size:* ${selectedSize}
           *Product Color:* ${selectedColor}
           *Quantity:* ${quantity}
-          *Product Price:* ${productPrice.toLocaleString("en-US")}
+          *Product Price:* ₦${productPrice.toLocaleString("en-US")}
           *Product Link:* Link: https://fitin-nine.vercel.app/${id}
         `;
         })
