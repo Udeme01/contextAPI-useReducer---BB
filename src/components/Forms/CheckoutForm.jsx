@@ -46,7 +46,7 @@ const CheckoutForm = () => {
           *Product Size:* ${selectedSize}
           *Product Color:* ${selectedColor}
           *Quantity:* ${quantity}
-          *Product Price:* ${productPrice}
+          *Product Price:* ${productPrice.toLocaleString("en-US")}
           *Product Link:* Link: https://fitin-nine.vercel.app/${id}
         `;
         })
@@ -65,9 +65,9 @@ const CheckoutForm = () => {
         *Products:*
         ${productList}
 
-        *Total Price:* $${items
+        *Total Price:* ₦${items
           .reduce((acc, item) => acc + item.price * item.quantity, 0)
-          .toFixed(2)}
+          .toLocaleString("en-US")}
         `;
 
       if (!productList.trim()) {
