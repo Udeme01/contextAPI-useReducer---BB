@@ -22,7 +22,7 @@ export default function Product({ description, id, image, price, title }) {
           <div>
             <h3 className="text-[#464444] text-2xl my-4">{title}</h3>
             <p className="product-price m-0 text-lg text-[#464444] font-bold">
-              ${price}
+              ₦{price.toLocaleString('en-US')}
             </p>
             <p>{description}</p>
           </div>

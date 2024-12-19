@@ -108,7 +108,7 @@ const ProductItem = ({ product }) => {
 
           {/* price & shipping */}
           <span className="flex flex-col mt-4">
-            <span>${price}</span>
+            <span>₦{price.toLocaleString("en-US")}</span>
             <span className="text-xs font-extralight tracking-wider">
               Shipping calculated at checkout
             </span>

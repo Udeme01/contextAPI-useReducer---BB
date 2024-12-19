@@ -59,9 +59,9 @@ const Footer = () => {
             <h4 className="text-[#fff] my-6 text-xl">Contact Us</h4>
             <div className="text-sm">
               <p>
-                3 Bello Cresent
+                126 Baale Adesola
                 <br />
-                Ilupeju, Lagos 102215
+                Ifako Ijaiye, Lagos 100001
                 <br />
                 Lagos, Nigeria
               </p>
