@@ -297,12 +297,12 @@ const CheckoutForm = () => {
 
                         <span className="p-2 flex flex-col gap-1 font-bold my-4">
                           <h6 className="">{name}</h6>
-                          <p>{formattedPrice}</p>
+                          <p>{formattedPrice.toLocaleString('en-US')}</p>
                           <p>Color: {selectedColor}</p>
                           <p>Size: {selectedSize}</p>
                         </span>
                       </div>
-                      <div>{totalPrice}</div>
+                      <div>{totalPrice.toLocaleString("en-US")}</div>
                     </li>
                   );
                 })}
@@ -316,7 +316,7 @@ const CheckoutForm = () => {
                   Total <span>.</span> {items.length} items{" "}
                 </h1>
                 <p className="text-3xl text-[#464444] font-bold">
-                  {formattedTotalPrice}
+                  {formattedTotalPrice.toLocaleString("en-US")}
                 </p>
               </span>
             </section>
