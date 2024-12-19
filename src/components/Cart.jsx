@@ -33,7 +33,7 @@ export default function Cart() {
 
                   <span className="p-2 flex flex-col gap-1 font-bold">
                     <h6 className="">{name}</h6>
-                    <p>{formattedPrice}</p>
+                    <p>₦{formattedPrice.toLocaleString("en-US")}</p>
                     <p>Color: {selectedColor}</p>
                     <p>Size: {selectedSize}</p>
                   </span>
@@ -83,7 +83,8 @@ export default function Cart() {
         </ul>
       )}
       <p id="cart-total-price">
-        Cart Total: <strong>{formattedTotalPrice}</strong>
+        Cart Total:{" "}
+        <strong>₦{formattedTotalPrice.toLocaleString("en-US")}</strong>
       </p>
     </div>
   );
