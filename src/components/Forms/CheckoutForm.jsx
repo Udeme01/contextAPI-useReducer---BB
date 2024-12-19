@@ -16,7 +16,7 @@ const CheckoutForm = () => {
     (acc, item) => acc + item.price * item.quantity,
     0
   );
-  const formattedTotalPrice = `$${subtotalPrice.toFixed(2)}`;
+  const formattedTotalPrice = `₦${subtotalPrice.toLocaleString("en-US")}`;
 
   const businessWhatsAppNumber = "+2348072924725";
 
@@ -265,7 +265,9 @@ const CheckoutForm = () => {
               {/* items in cart */}
               <ul>
                 {items.map((item) => {
-                  const formattedPrice = `$${item.price.toFixed(2)}`;
+                  const formattedPrice = `₦${item.price.toLocaleString(
+                    "en-US"
+                  )}`;
 
                   const {
                     id,
@@ -276,8 +278,9 @@ const CheckoutForm = () => {
                     selectedSize,
                   } = item;
                   const productIdSpecific = `${id}-${selectedSize}-${selectedColor}`;
-                  const totalPrice = `₦${(item.price * quantity).toFixed(2)}`;
-
+                  const totalPrice = `₦${(item.price * quantity).toLocaleString(
+                    "en-US"
+                  )}`;
                   return (
                     <li
                       key={productIdSpecific}
@@ -297,12 +300,12 @@ const CheckoutForm = () => {
 
                         <span className="p-2 flex flex-col gap-1 font-bold my-4">
                           <h6 className="">{name}</h6>
-                          <p>₦{formattedPrice.toLocaleString("en-US")}</p>
+                          <p>{formattedPrice}</p>
                           <p>Color: {selectedColor}</p>
                           <p>Size: {selectedSize}</p>
                         </span>
                       </div>
-                      <div>₦{totalPrice.toLocaleString("en-US")}</div>
+                      <div>{totalPrice}</div>
                     </li>
                   );
                 })}
@@ -316,7 +319,7 @@ const CheckoutForm = () => {
                   Total <span>.</span> {items.length} items{" "}
                 </h1>
                 <p className="text-3xl text-[#464444] font-bold">
-                  ₦{formattedTotalPrice.toLocaleString("en-US")}
+                  {formattedTotalPrice}
                 </p>
               </span>
             </section>

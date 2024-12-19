@@ -10,7 +10,7 @@ export default function Cart() {
     (acc, item) => acc + item.price * item.quantity,
     0
   );
-  const formattedTotalPrice = `$${totalPrice.toFixed(2)}`;
+  const formattedTotalPrice = `₦${totalPrice.toLocaleString("en-US")}`;
 
   return (
     <div id="cart">
@@ -18,7 +18,7 @@ export default function Cart() {
       {items.length > 0 && (
         <ul id="cart-items">
           {items.map((item) => {
-            const formattedPrice = `$${item.price.toFixed(2)}`;
+            const formattedPrice = `₦${item.price.toLocaleString("en-US")}`;
             const { id, name, image, quantity, selectedColor, selectedSize } =
               item;
             const productIdSpecific = `${id}-${selectedSize}-${selectedColor}`;
@@ -33,7 +33,7 @@ export default function Cart() {
 
                   <span className="p-2 flex flex-col gap-1 font-bold">
                     <h6 className="">{name}</h6>
-                    <p>₦{formattedPrice.toLocaleString("en-US")}</p>
+                    <p>{formattedPrice}</p>
                     <p>Color: {selectedColor}</p>
                     <p>Size: {selectedSize}</p>
                   </span>
@@ -83,8 +83,7 @@ export default function Cart() {
         </ul>
       )}
       <p id="cart-total-price">
-        Cart Total:{" "}
-        <strong>₦{formattedTotalPrice.toLocaleString("en-US")}</strong>
+        Cart Total: <strong>{formattedTotalPrice}</strong>
       </p>
     </div>
   );
