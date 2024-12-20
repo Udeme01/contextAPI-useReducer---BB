@@ -86,6 +86,7 @@ const Footer = () => {
             Built by quietdev. <br />
             <a
               href="https://wa.link/5cljm2"
+              target="_blank"
               className="underline text-green-400 text-sm block"
             >
               get yours now.
