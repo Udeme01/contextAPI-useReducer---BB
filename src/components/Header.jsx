@@ -11,7 +11,7 @@ import { faInstagram, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import Checkout from "./Buttons/Checkout.jsx";
 import Close from "./Buttons/Close.jsx";
 import { Link } from "react-router-dom";
-import logo from "/logoPik.jpg";
+import logo from "/logo.png";
 import { HeaderContext } from "./store/HeaderContext.jsx";
 
 export default function Header() {
