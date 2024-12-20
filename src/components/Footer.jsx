@@ -78,7 +78,7 @@ const Footer = () => {
             </div>
           </section>
         </section>
-        <section className="flex justify-evenly items-center border-t border-[#f3e7d4]-800 mt-16 pt-8 sm:mt-20">
+        <section className="flex justify-between items-center border-t border-[#f3e7d4]-800 mt-16 pt-8 sm:mt-20">
           <p className="text-sm leading-5">
             &copy; 2024, Fit-In. All rights reserved.
           </p>
