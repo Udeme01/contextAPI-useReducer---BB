@@ -36,8 +36,8 @@ const ProductItem = ({ product }) => {
   //    context
   const { addItemToCart, items } = useContext(CartContext);
   const { headerHeight, isMediumScreen } = useContext(HeaderContext);
-  console.log(headerHeight);
-  console.log(isMediumScreen);
+  // console.log(headerHeight);
+  // console.log(isMediumScreen);
 
   const handleQuantityChange = (amount) => {
     setQuantity((prev) => Math.max(1, prev + amount)); // Ensure quantity doesn't drop below 1
